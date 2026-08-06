@@ -1,4 +1,4 @@
-
+@import url("categories.css");
 @import url("reset.css");
 @import url("topbar.css");
 @import url("logo-search.css");
@@ -6,3 +6,6 @@
 @import url("buttons.css");
 @import url("hero.css");
 @import url("footer.css");
+@import url("featured-books.css");
+@import url("newsletter.css");
+

@@ -13,6 +13,11 @@ require_once 'components/navbar.php';
 
     <?php require_once 'components/hero.php'; ?>
 
+    <?php require_once 'components/categories.php'; ?>
+    <?php require_once 'components/featured-books.php'; ?>
+    <?php require_once 'components/newsletter.php'; ?>
+
+
 </main>
 
 <?php

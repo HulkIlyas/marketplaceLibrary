@@ -34,13 +34,13 @@
 
                 <ul>
 
-                    <li><a href="index.php"><?= __('navbar.home') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>index.php"><?= __('navbar.home') ?></a></li>
 
-                    <li><a href="pages/books.php"><?= __('navbar.books') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>pages/books.php"><?= __('navbar.books') ?></a></li>
 
-                    <li><a href="pages/categories.php"><?= __('navbar.categories') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>pages/category.php"><?= __('navbar.categories') ?></a></li>
 
-                    <li><a href="pages/contact.php"><?= __('navbar.contact') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>pages/contact.php"><?= __('navbar.contact') ?></a></li>
 
                 </ul>
 

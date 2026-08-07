@@ -1,6 +1,30 @@
 <?php
 
 return [
+    'auth' => [
+        'breadcrumbLabel' => "Fil d'Ariane",
+        'loginTitle' => 'Connexion',
+        'loginSubtitle' => 'Connectez-vous à votre compte',
+        'registerTitle' => 'Créer un compte',
+        'registerSubtitle' => 'Rejoignez Marketplace Library',
+        'firstName' => 'Prénom',
+        'lastName' => 'Nom',
+        'email' => 'Adresse e-mail',
+        'password' => 'Mot de passe',
+        'confirmPassword' => 'Confirmer le mot de passe',
+        'showPassword' => 'Afficher le mot de passe',
+        'hidePassword' => 'Masquer le mot de passe',
+        'rememberMe' => 'Se souvenir de moi',
+        'forgotPassword' => 'Mot de passe oublié ?',
+        'loginButton' => 'Se connecter',
+        'noAccount' => "Vous n'avez pas encore de compte ?",
+        'createAccount' => 'Créer un compte',
+        'acceptTerms' => "J'accepte les conditions d'utilisation et la politique de confidentialité",
+        'registerButton' => 'Créer mon compte',
+        'hasAccount' => 'Vous avez déjà un compte ?',
+        'loginLink' => 'Se connecter',
+        'passwordMismatch' => 'Les mots de passe ne correspondent pas.',
+    ],
     'categories' => [
         'ShopByCategory' => 'Acheter par catégorie',
         'subtitle' => 'Trouvez tout ce dont vous avez besoin en un seul endroit.',
@@ -11,6 +35,19 @@ return [
         'school' => 'Scolaire',
         'art' => 'Art',
         'manga' => 'Manga',
+    ],
+    'categoryPage' => [
+        'breadcrumbLabel' => "Fil d'Ariane", 'browseTitle' => 'Parcourir les catégories',
+        'browseDescription' => 'Trouvez facilement les livres et produits qui vous intéressent.',
+        'selectedDescription' => 'Découvrez tous les articles de cette catégorie.',
+        'chooseCategory' => 'Choisissez une catégorie', 'chooseDescription' => 'Explorez notre sélection par univers.',
+        'descriptions' => ['books' => 'Romans, essais et autres ouvrages', 'stationery' => 'Cahiers, stylos et accessoires', 'digital' => 'Ressources et contenus numériques', 'school' => 'Tout pour les études et la rentrée', 'art' => 'Matériel créatif et beaux-arts', 'manga' => 'Mangas et bandes dessinées'],
+        'itemCount' => '120 articles', 'viewBooks' => 'Voir les articles', 'results' => 'résultats', 'sortBy' => 'Trier par',
+        'relevance' => 'Pertinence', 'priceLowHigh' => 'Prix croissant', 'priceHighLow' => 'Prix décroissant', 'newest' => 'Nouveautés',
+        'filters' => 'Filtres', 'price' => 'Prix', 'minimum' => 'Min.', 'maximum' => 'Max.', 'condition' => 'État',
+        'likeNew' => 'Comme neuf', 'veryGood' => 'Très bon état', 'good' => 'Bon état', 'acceptable' => 'Acceptable',
+        'viewBook' => 'Voir le livre', 'addWishlist' => 'Ajouter à la liste de souhaits', 'noProducts' => 'Aucun article trouvé',
+        'noProductsDescription' => "Il n'y a actuellement aucun article disponible dans cette catégorie.", 'allCategories' => 'Voir toutes les catégories',
     ],
 
     'featuredBooks' => [

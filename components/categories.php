@@ -16,32 +16,32 @@
 
         <div class="category-grid">
 
-            <a href="#" class="category-card">
+            <a href="pages/category.php?category=books" class="category-card">
                 <i class="fa-solid fa-book"></i>
                 <h3><?= __('categories.books') ?></h3>
             </a>
 
-            <a href="#" class="category-card">
+            <a href="pages/category.php?category=stationery" class="category-card">
                 <i class="fa-solid fa-pencil"></i>
                 <h3><?= __('categories.stationery') ?></h3>
             </a>
 
-            <a href="#" class="category-card">
+            <a href="pages/category.php?category=digital" class="category-card">
                 <i class="fa-solid fa-laptop"></i>
                 <h3><?= __('categories.digital') ?></h3>
             </a>
 
-            <a href="#" class="category-card">
+            <a href="pages/category.php?category=school" class="category-card">
                 <i class="fa-solid fa-school"></i>
                 <h3><?= __('categories.school') ?></h3>
             </a>
 
-            <a href="#" class="category-card">
+            <a href="pages/category.php?category=art" class="category-card">
                 <i class="fa-solid fa-palette"></i>
                 <h3><?= __('categories.art') ?></h3>
             </a>
 
-            <a href="#" class="category-card">
+            <a href="pages/category.php?category=manga" class="category-card">
                 <i class="fa-solid fa-book-open"></i>
                 <h3><?= __('categories.manga') ?></h3>
             </a>

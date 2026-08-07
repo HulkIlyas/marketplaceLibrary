@@ -1,6 +1,30 @@
 <?php
 
 return [
+    'auth' => [
+        'breadcrumbLabel' => 'Breadcrumb',
+        'loginTitle' => 'Login',
+        'loginSubtitle' => 'Sign in to your account',
+        'registerTitle' => 'Create an account',
+        'registerSubtitle' => 'Join Marketplace Library',
+        'firstName' => 'First name',
+        'lastName' => 'Last name',
+        'email' => 'Email address',
+        'password' => 'Password',
+        'confirmPassword' => 'Confirm password',
+        'showPassword' => 'Show password',
+        'hidePassword' => 'Hide password',
+        'rememberMe' => 'Remember me',
+        'forgotPassword' => 'Forgot password?',
+        'loginButton' => 'Sign in',
+        'noAccount' => "Don't have an account yet?",
+        'createAccount' => 'Create an account',
+        'acceptTerms' => 'I accept the terms of use and privacy policy',
+        'registerButton' => 'Create my account',
+        'hasAccount' => 'Already have an account?',
+        'loginLink' => 'Sign in',
+        'passwordMismatch' => 'Passwords do not match.',
+    ],
     'categories' => [
         'ShopByCategory' => 'Shop by Category',
         'subtitle' => 'Find everything you need in one place.',
@@ -11,6 +35,19 @@ return [
         'school' => 'School',
         'art' => 'Art',
         'manga' => 'Manga',
+    ],
+    'categoryPage' => [
+        'breadcrumbLabel' => 'Breadcrumb', 'browseTitle' => 'Browse Categories',
+        'browseDescription' => 'Easily find the books and products that interest you.',
+        'selectedDescription' => 'Discover all the items in this category.',
+        'chooseCategory' => 'Choose a category', 'chooseDescription' => 'Explore our selection by collection.',
+        'descriptions' => ['books' => 'Novels, essays, and other books', 'stationery' => 'Notebooks, pens, and accessories', 'digital' => 'Digital resources and content', 'school' => 'Everything for school and study', 'art' => 'Creative and fine art supplies', 'manga' => 'Manga and graphic novels'],
+        'itemCount' => '120 items', 'viewBooks' => 'View items', 'results' => 'results', 'sortBy' => 'Sort by',
+        'relevance' => 'Relevance', 'priceLowHigh' => 'Price: low to high', 'priceHighLow' => 'Price: high to low', 'newest' => 'Newest',
+        'filters' => 'Filters', 'price' => 'Price', 'minimum' => 'Min.', 'maximum' => 'Max.', 'condition' => 'Condition',
+        'likeNew' => 'Like new', 'veryGood' => 'Very good', 'good' => 'Good', 'acceptable' => 'Acceptable',
+        'viewBook' => 'View book', 'addWishlist' => 'Add to wishlist', 'noProducts' => 'No items found',
+        'noProductsDescription' => 'There are currently no items available in this category.', 'allCategories' => 'View all categories',
     ],
 
     'featuredBooks' => [

@@ -1,9 +1,12 @@
 <?php
 $pageTitle = $pageTitle ?? "Marketplace Library";
+$basePath = $basePath ?? '';
+$lang = $lang ?? 'fr';
+$textDirection = $lang === 'ar' ? 'rtl' : 'ltr';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= htmlspecialchars($lang) ?>" dir="<?= $textDirection ?>">
 
 <head>
 
@@ -12,7 +15,11 @@ $pageTitle = $pageTitle ?? "Marketplace Library";
 
     <title><?= htmlspecialchars($pageTitle) ?></title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<?= htmlspecialchars($basePath) ?>css/style.css">
+
+    <?php if (!empty($pageStylesheet)): ?>
+        <link rel="stylesheet" href="<?= htmlspecialchars($basePath . 'css/' . $pageStylesheet) ?>">
+    <?php endif; ?>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 

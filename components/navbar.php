@@ -4,9 +4,9 @@
 
         <ul class="nav-menu">
 
-            <li><a href="index.php" class="active"><?= __('navbar.home') ?></a></li>
+            <li><a href="<?= htmlspecialchars($basePath) ?>index.php"<?= ($currentPage ?? '') === 'home' ? ' class="active"' : '' ?>><?= __('navbar.home') ?></a></li>
 
-            <li><a href="#"><?= __('navbar.categories') ?></a></li>
+            <li><a href="<?= htmlspecialchars($basePath) ?>pages/category.php"<?= ($currentPage ?? '') === 'categories' ? ' class="active"' : '' ?>><?= __('navbar.categories') ?></a></li>
 
             <li><a href="#"><?= __('navbar.books') ?></a></li>
 

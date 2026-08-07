@@ -1,3 +1,6 @@
+<?php
+$params = $_GET;
+?>
 <section class="topbar">
 
     <div class="container topbar-container">
@@ -19,11 +22,11 @@
 
             <span>|</span>
 
-            <a href="#">EN</a>
+            <a href="?<?= http_build_query(array_merge($params, ['lang' => 'en'])) ?>">EN</a>
 
-            <a href="#">FR</a>
+            <a href="?<?= http_build_query(array_merge($params, ['lang' => 'fr'])) ?>">FR</a>
 
-            <a href="#">AR</a>
+            <a href="?<?= http_build_query(array_merge($params, ['lang' => 'ar'])) ?>">AR</a>
 
         </div>
 

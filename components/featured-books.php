@@ -4,12 +4,11 @@
 
         <div class="section-title">
             <h2><?= __('featuredBooks.title') ?></h2>
-
             <p><?= __('featuredBooks.subtitle') ?></p>
-
             <a href="pages/books.php" class="view-all">
                 <?= __('featuredBooks.viewAll') ?>
             </a>
+
         </div>
 
         <div class="book-grid">

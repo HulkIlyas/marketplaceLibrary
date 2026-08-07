@@ -3,13 +3,13 @@
     <div class="container">
 
         <div class="section-title">
-            <h2>Featured Books</h2>
-            <p>Discover our most popular books.</p> 
-            <a href="pages/books.php" class="view-all">
-                View All
-            </a>
+            <h2><?= __('featuredBooks.title') ?></h2>
 
-</div>
+            <p><?= __('featuredBooks.subtitle') ?></p>
+
+            <a href="pages/books.php" class="view-all">
+                <?= __('featuredBooks.viewAll') ?>
+            </a>
         </div>
 
         <div class="book-grid">
@@ -29,7 +29,7 @@
                     </div>
 
                     <a href="#" class="btn-cart">
-                        Add to Cart
+                        <?= __('featuredBooks.addToCart') ?>
                     </a>
 
                 </div>
@@ -51,7 +51,7 @@
                     </div>
 
                     <a href="#" class="btn-cart">
-                        Add to Cart
+                        <?= __('featuredBooks.addToCart') ?>
                     </a>
 
                 </div>
@@ -73,7 +73,7 @@
                     </div>
 
                     <a href="#" class="btn-cart">
-                        Add to Cart
+                        <?= __('featuredBooks.addToCart') ?>
                     </a>
 
                 </div>
@@ -95,7 +95,7 @@
                     </div>
 
                     <a href="#" class="btn-cart">
-                        Add to Cart
+                        <?= __('featuredBooks.addToCart') ?>
                     </a>
 
                 </div>
@@ -105,5 +105,4 @@
         </div>
 
     </div>
-
 </section>

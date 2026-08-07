@@ -5,28 +5,26 @@
         <div class="hero-content">
 
             <span class="hero-subtitle">
-                Welcome to Marketplace Library
+                <?= __('hero.subtitle') ?>
             </span>
 
             <h1>
-                Discover Your Next
-                <span>Favorite Book</span>
+                <?= __('hero.title') ?>
+                <span><?= __('hero.highlight') ?></span>
             </h1>
 
             <p>
-                Browse thousands of books, school supplies,
-                manga, and digital resources at the
-                best prices.
+                <?= __('hero.description') ?>
             </p>
 
             <div class="hero-buttons">
 
                 <a href="#" class="btn btn-primary">
-                    Shop Now
+                    <?= __('hero.shopNow') ?>
                 </a>
 
                 <a href="#" class="btn btn-secondary">
-                    Browse Categories
+                    <?= __('hero.browseCategories') ?>
                 </a>
 
             </div>
@@ -35,8 +33,9 @@
 
         <div class="hero-image">
 
-            <img src="assets/images/hero-books.png"
-                 alt="Books">
+            <img
+                src="assets/images/hero-books.png"
+                alt="<?= __('hero.imageAlt') ?>">
 
         </div>
 

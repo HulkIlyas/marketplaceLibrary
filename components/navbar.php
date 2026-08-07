@@ -4,22 +4,21 @@
 
         <ul class="nav-menu">
 
-            <li><a href="index.php" class="active">Home</a></li>
+            <li><a href="index.php" class="active"><?= __('navbar.home') ?></a></li>
 
-            <li><a href="#">Categories</a></li>
+            <li><a href="#"><?= __('navbar.categories') ?></a></li>
 
-            <li><a href="#">Books</a></li>
+            <li><a href="#"><?= __('navbar.books') ?></a></li>
 
-            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#"><?= __('navbar.newArrivals') ?></a></li>
 
-            <li><a href="#">Best Sellers</a></li>
+            <li><a href="#"><?= __('navbar.bestSellers') ?></a></li>
 
-            <li><a href="#">School Supplies</a></li>
+            <li><a href="#"><?= __('navbar.schoolSupplies') ?></a></li>
 
-            <li><a href="#">Manga</a></li>
+            <li><a href="#"><?= __('navbar.manga') ?></a></li>
 
         </ul>
 
     </div>
-
 </nav>

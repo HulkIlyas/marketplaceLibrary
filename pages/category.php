@@ -1,2 +1,42 @@
-<?php require_once __DIR__.'/../includes/config.php'; require_once __DIR__.'/../includes/translator.php'; $basePath='../'; $pageTitle='Categories | Marketplace Library'; require_once __DIR__.'/../components/header.php'; require_once __DIR__.'/../components/topbar.php'; require_once __DIR__.'/../components/logo-search.php'; require_once __DIR__.'/../components/navbar.php'; ?>
-<main class="inner-page"><section class="page-hero"><div class="container"><span class="eyebrow">EXPLORE THE SHELVES</span><h1>Browse categories</h1><p>From timeless novels to practical school books, find your next read by subject.</p></div></section><?php require __DIR__.'/../components/categories.php'; ?><section class="category-feature"><div class="container"><div><span class="eyebrow">MOST LOVED</span><h2>Manga & graphic stories</h2><p>Discover collector editions, complete series and affordable pre-loved volumes from readers across Morocco.</p><a class="btn btn-primary" href="books.php">Explore 870 listings</a></div><div class="category-books" aria-hidden="true"><span>01</span><span>マンガ</span><span>STORIES</span></div></div></section></main><?php require __DIR__.'/../components/footer.php'; ?>
+<?php
+
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/translator.php';
+
+$basePath = '../';
+$pageTitle = 'Categories | Marketplace Library';
+
+require_once __DIR__ . '/../components/header.php';
+require_once __DIR__ . '/../components/topbar.php';
+require_once __DIR__ . '/../components/logo-search.php';
+require_once __DIR__ . '/../components/navbar.php';
+?>
+<main class="inner-page">
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow">EXPLORE THE SHELVES</span>
+            <h1>Browse categories</h1>
+            <p>From timeless novels to practical school books, find your next read by subject.</p>
+        </div>
+    </section>
+    <?php require __DIR__ . '/../components/categories.php'; ?>
+    <section class="category-feature">
+        <div class="container">
+            <div>
+                <span class="eyebrow">MOST LOVED</span>
+                <h2>Manga & graphic stories</h2>
+                <p>
+                    Discover collector editions, complete series and affordable pre-loved volumes from readers
+                    across Morocco.
+                </p>
+                <a class="btn btn-primary" href="books.php">Explore 870 listings</a>
+            </div>
+            <div class="category-books" aria-hidden="true">
+                <span>01</span>
+                <span>マンガ</span>
+                <span>STORIES</span>
+            </div>
+        </div>
+    </section>
+</main>
+<?php require __DIR__ . '/../components/footer.php'; ?>

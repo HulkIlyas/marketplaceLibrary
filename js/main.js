@@ -9,7 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('click', (event) => {
-        if (navigation?.classList.contains('is-open') && !navigation.contains(event.target) && !toggle?.contains(event.target)) {
+        const clickedOutsideNavigation =
+            navigation?.classList.contains('is-open') &&
+            !navigation.contains(event.target) &&
+            !toggle?.contains(event.target);
+
+        if (clickedOutsideNavigation) {
             navigation.classList.remove('is-open');
             toggle.setAttribute('aria-expanded', 'false');
             toggle.querySelector('i').className = 'fa-solid fa-bars';
@@ -46,10 +51,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const accountLink = document.querySelector('[data-account-link]');
+    const registerLink = document.querySelector('[data-auth-register]');
+    const logoutButton = document.querySelector('[data-auth-logout]');
+
     if (accountLink && typeof Auth !== 'undefined' && Auth.isAuthenticated()) {
-        accountLink.href = accountLink.dataset.profileHref;
+        const user = Auth.getUserPayload();
         const label = accountLink.querySelector('span');
-        const user = window.Auth.getUserPayload?.();
-        if (label) label.textContent = user?.name || 'My account';
+
+        accountLink.href = accountLink.dataset.profileHref;
+        if (label) {
+            label.textContent = user?.name || 'My Account';
+        }
+
+        if (registerLink) {
+            registerLink.hidden = true;
+        }
+
+        if (logoutButton) {
+            logoutButton.hidden = false;
+        }
     }
+
+    logoutButton?.addEventListener('click', () => {
+        Auth.logout();
+        window.location.href = logoutButton.dataset.homeHref;
+    });
 });

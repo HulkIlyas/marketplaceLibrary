@@ -1,6 +1,8 @@
 const API_BASE = 'http://localhost:8000';
 
 async function apiRequest(endpoint, method = 'GET', body = null) {
+    const normalizedEndpoint = `/${endpoint.replace(/^\/+/, '')}`;
+    const isLoginRequest = normalizedEndpoint === '/login' || normalizedEndpoint === '/users/login';
     const headers = {
         'Content-Type': 'application/json'
     };
@@ -16,15 +18,15 @@ async function apiRequest(endpoint, method = 'GET', body = null) {
     }
 
     try {
-        const response = await fetch(`${API_BASE}${endpoint}`, config);
+        const response = await fetch(`${API_BASE}${normalizedEndpoint}`, config);
+
+        const data = await response.json().catch(() => ({}));
 
         // Handle token expiration or unauthorized requests automatically
-        if (response.status === 401) {
+        if (response.status === 401 && !isLoginRequest) {
             Auth.logout();
-            return;
         }
 
-        const data = await response.json();
         return { ok: response.ok, status: response.status, data };
     } catch (err) {
         console.error('API Error:', err);

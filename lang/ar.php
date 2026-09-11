@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'auth' => [
+        'breadcrumbLabel' => 'مسار التنقل', 'loginTitle' => 'تسجيل الدخول',
+        'loginSubtitle' => 'سجّل الدخول إلى حسابك', 'email' => 'البريد الإلكتروني',
+        'password' => 'كلمة المرور', 'showPassword' => 'إظهار كلمة المرور', 'hidePassword' => 'إخفاء كلمة المرور',
+        'rememberMe' => 'تذكرني', 'forgotPassword' => 'نسيت كلمة المرور؟',
+        'loginButton' => 'تسجيل الدخول', 'noAccount' => 'ليس لديك حساب بعد؟', 'createAccount' => 'إنشاء حساب',
+    ],
     'categories' => [
         'ShopByCategory' => 'تسوق حسب الفئة',
         'subtitle' => 'اعثر على كل ما تحتاجه في مكان واحد.',
@@ -59,7 +66,7 @@ return [
 
         'searchPlaceholder' => 'ابحث عن الكتب أو المؤلفين...',
 
-        'login' => 'تسجيل الدخول',
+        'login' => 'تسجيل الدخول', 'register' => 'إنشاء حساب',
         'cart' => 'السلة',
     ],
 

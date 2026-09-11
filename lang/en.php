@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'auth' => [
+        'breadcrumbLabel' => 'Breadcrumb', 'loginTitle' => 'Login',
+        'loginSubtitle' => 'Sign in to your account', 'email' => 'Email address',
+        'password' => 'Password', 'showPassword' => 'Show password', 'hidePassword' => 'Hide password',
+        'rememberMe' => 'Remember me', 'forgotPassword' => 'Forgot password?',
+        'loginButton' => 'Sign in', 'noAccount' => "Don't have an account yet?", 'createAccount' => 'Create an account',
+    ],
     'categories' => [
         'ShopByCategory' => 'Shop by Category',
         'subtitle' => 'Find everything you need in one place.',
@@ -56,7 +63,7 @@ return [
 
         'searchPlaceholder' => 'Search books, authors...',
 
-        'login' => 'Login',
+        'login' => 'Login', 'register' => 'Create account',
         'cart' => 'Cart',
     ],
     'navbar' => [

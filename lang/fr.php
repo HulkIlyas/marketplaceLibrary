@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'auth' => [
+        'breadcrumbLabel' => "Fil d'Ariane", 'loginTitle' => 'Connexion',
+        'loginSubtitle' => 'Connectez-vous à votre compte', 'email' => 'Adresse e-mail',
+        'password' => 'Mot de passe', 'showPassword' => 'Afficher le mot de passe', 'hidePassword' => 'Masquer le mot de passe',
+        'rememberMe' => 'Se souvenir de moi', 'forgotPassword' => 'Mot de passe oublié ?',
+        'loginButton' => 'Se connecter', 'noAccount' => "Vous n'avez pas encore de compte ?", 'createAccount' => 'Créer un compte',
+    ],
     'categories' => [
         'ShopByCategory' => 'Acheter par catégorie',
         'subtitle' => 'Trouvez tout ce dont vous avez besoin en un seul endroit.',
@@ -59,7 +66,7 @@ return [
 
         'searchPlaceholder' => 'Rechercher des livres, des auteurs...',
 
-        'login' => 'Connexion',
+        'login' => 'Connexion', 'register' => 'Créer un compte',
         'cart' => 'Panier',
     ],
 

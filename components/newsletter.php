@@ -10,7 +10,7 @@
                 Get the latest books, exclusive offers, and updates delivered to your inbox.
             </p>
 
-            <form action="#" method="POST" class="newsletter-form">
+            <form class="newsletter-form" data-ui-newsletter>
 
                 <input
                     type="email"

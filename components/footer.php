@@ -15,13 +15,13 @@
 
                 <div class="social-links">
 
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
 
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
 
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
 
-                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://x.com/" aria-label="X"><i class="fab fa-x-twitter"></i></a>
 
                 </div>
 
@@ -34,13 +34,13 @@
 
                 <ul>
 
-                    <li><a href="index.php"><?= __('navbar.home') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>index.php"><?= __('navbar.home') ?></a></li>
 
-                    <li><a href="pages/books.php"><?= __('navbar.books') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>pages/books.php"><?= __('navbar.books') ?></a></li>
 
-                    <li><a href="pages/categories.php"><?= __('navbar.categories') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>pages/category.php"><?= __('navbar.categories') ?></a></li>
 
-                    <li><a href="pages/contact.php"><?= __('navbar.contact') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>pages/contact.php"><?= __('navbar.contact') ?></a></li>
 
                 </ul>
 
@@ -53,13 +53,13 @@
 
                 <ul>
 
-                    <li><a href="#"><?= __('footer.myAccount') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>profile.php"><?= __('footer.myAccount') ?></a></li>
 
-                    <li><a href="#"><?= __('footer.wishlist') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>pages/wishlist.php"><?= __('footer.wishlist') ?></a></li>
 
-                    <li><a href="#"><?= __('footer.cart') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>pages/cart.php"><?= __('footer.cart') ?></a></li>
 
-                    <li><a href="#"><?= __('footer.orders') ?></a></li>
+                    <li><a href="<?= htmlspecialchars($basePath) ?>profile.php#orders"><?= __('footer.orders') ?></a></li>
 
                 </ul>
 
@@ -93,3 +93,6 @@
     </div>
 
 </footer>
+<script src="<?= htmlspecialchars($basePath ?? '') ?>js/main.js"></script>
+</body>
+</html>

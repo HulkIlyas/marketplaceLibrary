@@ -1,6 +1,15 @@
-<?php require_once 'includes/header.php'; ?>
+<?php
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/translator.php';
+$basePath = '';
+$pageTitle = 'My account | Marketplace Library';
+require_once __DIR__ . '/components/header.php';
+require_once __DIR__ . '/components/topbar.php';
+require_once __DIR__ . '/components/logo-search.php';
+require_once __DIR__ . '/components/navbar.php';
+?>
 
-<script>Auth.requireAuth();</script>
+<script>if (!Auth.isAuthenticated()) window.location.href = 'pages/login.php';</script>
 
 <style>
   :root{
@@ -20,7 +29,7 @@
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
-    font-family:'Karla', sans-serif;
+    font-family:'Inter', sans-serif;
     background:var(--cream);
     color:var(--ink);
     -webkit-font-smoothing:antialiased;
@@ -28,7 +37,7 @@
   h1,h2,h3,.serif{font-family:'Fraunces', serif;}
 
   /* ---------- top bar ---------- */
-  .topbar{
+  .profile-toolbar{
     display:flex; align-items:center; justify-content:space-between;
     padding:20px 40px;
     background:var(--green-950);
@@ -56,7 +65,7 @@
   }
 
   /* ---------- hero / cover ---------- */
-  .cover{
+  .profile-cover{
     position:relative;
     height:150px;
     background:
@@ -64,13 +73,13 @@
       repeating-linear-gradient(90deg, #2a4a30 0 46px, #23412a 46px 92px);
     overflow:hidden;
   }
-  .cover .shelf-books{
+  .profile-cover .shelf-books{
     position:absolute; bottom:0; left:0; right:0;
     display:flex; align-items:flex-end; height:100%;
     padding:0 6%;
     opacity:.5;
   }
-  .cover .spine{
+  .profile-cover .spine{
     width:26px; margin-right:3px; border-radius:2px 2px 0 0;
   }
 
@@ -216,12 +225,12 @@
   @media (max-width:760px){
     .grid-2{grid-template-columns:1fr;}
     .stat-row{grid-template-columns:repeat(2,1fr); row-gap:18px;}
-    .topbar{padding:16px 20px;}
+    .profile-toolbar{padding:16px 20px;}
     .profile-card{padding:24px 20px 22px;}
   }
 </style>
 
-<div class="topbar">
+<div class="profile-toolbar">
   <div class="brand">
     <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
       <path d="M13 4C10 2 6 2 3 3.5V19C6 17.5 10 17.5 13 19.5" stroke="#2c5530" stroke-width="1.8" stroke-linejoin="round" fill="#2c5530" fill-opacity=".9"/>
@@ -230,16 +239,16 @@
     BookPlace
   </div>
   <div class="top-actions">
-    <a href="#">Browse</a>
-    <a href="#">Sell</a>
-    <a href="#">Messages</a>
+    <a href="pages/books.php">Browse</a>
+    <a href="#sell">Sell</a>
+    <a href="pages/contact.php">Messages</a>
     <div class="icon-btn">
       🔔<span class="dot"></span>
     </div>
   </div>
 </div>
 
-<div class="cover">
+<div class="profile-cover">
   <div class="shelf-books">
     <div class="spine" style="height:62%;background:#3a6b41;"></div>
     <div class="spine" style="height:78%;background:#c9762e;"></div>
@@ -281,7 +290,7 @@
     </div>
   </div>
 
-  <div class="tabs">
+  <div class="tabs" id="orders">
     <div class="tab active">📚 Overview</div>
     <div class="tab">🛒 Purchases</div>
     <div class="tab">🏷️ Listings</div>
@@ -294,7 +303,7 @@
     <!-- LEFT COLUMN -->
     <div style="display:flex; flex-direction:column; gap:20px;">
 
-      <div class="panel">
+      <div class="panel" id="sell">
         <h2>Add New Book</h2>
         <div class="sub">Add a new book to your library catalog</div>
         <div id="bookError" style="display:none; color:#a8462f; font-size:13px; font-weight:700; margin-bottom:10px;"></div>
@@ -342,7 +351,7 @@
           <div class="book-status status-active">On loan</div>
         </div>
 
-        <a href="#" class="link-btn">View all borrowed books →</a>
+        <a href="pages/books.php" class="link-btn">View all borrowed books →</a>
       </div>
 
       <div class="panel">
@@ -353,7 +362,7 @@
           <p style="font-size:13.5px; color:var(--taupe);">Loading books...</p>
         </div>
 
-        <a href="#" class="link-btn">Manage all listings →</a>
+        <a href="#sell" class="link-btn">Manage all listings →</a>
       </div>
 
       <div class="panel">
@@ -447,6 +456,7 @@
   </div>
 </div>
 
+<script src="assets/js/api.js"></script>
 <script src="assets/js/profile.js"></script>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once __DIR__ . '/components/footer.php'; ?>

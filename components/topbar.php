@@ -7,18 +7,19 @@ $params = $_GET;
 
         <div class="topbar-left">
 
-            <i class="fa-solid fa-phone"></i>
-            <span>+212 600 000 000</span>
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Free listings for students</span>
 
         </div>
 
         <div class="topbar-right">
 
-            <a href="#">Help</a>
+            <span class="topbar-message">Buy · Sell · Exchange books</span>
+            <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/contact.php">Help</a>
 
             <span>|</span>
 
-            <a href="#">Track Order</a>
+            <a href="<?= htmlspecialchars($basePath ?? '') ?>profile.php#orders">Track Order</a>
 
             <span>|</span>
 

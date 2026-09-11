@@ -11,28 +11,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password').value;
 
         try {
-            const response = await fetch('http://localhost/marketplaceLibrary-API/api/login.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
-            });
+            const result = await apiRequest('/login', 'POST', { email, password });
 
-            const data = await response.json();
-
-            if (response.ok) {
-                alertMessage.style.color = 'green';
-                alertMessage.textContent = data.message || 'Login successful!';
-                // Optional: store user info for later use
-                localStorage.setItem('user', JSON.stringify(data.user));
-            } else {
-                alertMessage.style.color = 'red';
-                alertMessage.textContent = data.message || 'Login failed.';
+            if (!result.ok) {
+                throw new Error(result.data?.error || result.data?.message || 'Login failed.');
             }
+
+            const token = result.data?.token;
+            if (!token) {
+                throw new Error('Login response did not include an authentication token.');
+            }
+
+            Auth.setToken(token);
+            alertMessage.className = 'alert alert-success';
+            alertMessage.textContent = result.data?.message || 'Login successful!';
+            window.location.href = '../profile.php';
         } catch (error) {
             alertMessage.style.color = 'red';
-            alertMessage.textContent = 'An error occurred while connecting to the server.';
+            alertMessage.textContent = error.message || 'An error occurred while connecting to the server.';
         }
     });
 });

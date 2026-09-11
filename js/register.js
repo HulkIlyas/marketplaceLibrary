@@ -31,27 +31,22 @@ alertMessage.textContent = 'Password must contain at least one letter and one nu
 return;
 }
     try {
-        const response = await fetch('http://localhost/marketplaceLibrary-API/api/register.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name, email, password })
-        });
+        const result = await apiRequest('/users', 'POST', { name, email, password });
 
-        const data = await response.json();
+        if (!result.ok) {
+            throw new Error(result.data?.error || result.data?.message || 'Registration failed.');
+        }
 
-if (response.ok) {
     alertMessage.className = 'alert alert-success';
-    alertMessage.textContent = data.message || 'Registration successful! Redirecting to login...';
+    alertMessage.textContent = result.data?.message || 'Registration successful! Redirecting to login...';
     registerForm.reset();
 
     setTimeout(() => {
         window.location.href = 'login.php';
     }, 2000);
-} else {
-    alertMessage.className = 'alert alert-error';
-    alertMessage.textContent = data.message || 'Registration failed.';
-}
+    } catch (error) {
+        alertMessage.className = 'alert alert-error';
+        alertMessage.textContent = error.message || 'An error occurred while connecting to the server.';
+    }
 });
 });

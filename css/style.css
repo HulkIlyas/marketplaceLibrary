@@ -8,6 +8,9 @@
 @import url("footer.css");
 @import url("featured-books.css");
 @import url("newsletter.css");
+@import url("marketplace.css");
+@import url("premium.css");
+@import url("pages.css");
 
 :root {
   --color-primary: #2C5E3B;
@@ -54,6 +57,23 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.5;
+  overflow-x: hidden;
+}
+
+[dir="rtl"] .topbar-message { left: auto; right: 50%; transform: translateX(50%); }
+[dir="rtl"] .category-arrow { right: auto; left: 15px; }
+[dir="rtl"] .view-all,
+[dir="rtl"] .seller-card a { margin-left: 0; margin-right: auto; }
+
+@media (max-width: 800px) {
+  .catalog-filters.is-open { display: grid; }
+}
+
+@media (max-width: 460px) {
+  .hero-buttons { flex-direction: column; align-items: stretch; width: 100%; }
+  .hero-buttons .btn { width: 100%; }
+  .auth-options { align-items: flex-start; flex-direction: column; }
+  .topbar-right { gap: 7px; padding-right: 0; font-size: 12px; }
 }
 
 h1, h2, h3 {

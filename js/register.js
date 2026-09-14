@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             registerForm.reset();
 
             setTimeout(() => {
-                window.location.href = 'login.php';
+                window.location.href = 'pages/login.php';
             }, 2000);
         } catch (error) {
             alertMessage.className = 'alert alert-error';

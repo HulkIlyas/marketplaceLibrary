@@ -1,21 +1,21 @@
 <?php
 
-require_once __DIR__ . '/../includes/config.php';
-require_once __DIR__ . '/../includes/translator.php';
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/translator.php';
 
-$basePath = '../';
+$basePath = '';
 $pageTitle = 'Create account | Marketplace Library';
 $pageStylesheet = 'auth.css';
 
-require_once __DIR__ . '/../components/header.php';
-require_once __DIR__ . '/../components/topbar.php';
-require_once __DIR__ . '/../components/logo-search.php';
-require_once __DIR__ . '/../components/navbar.php';
+require_once __DIR__ . '/components/header.php';
+require_once __DIR__ . '/components/topbar.php';
+require_once __DIR__ . '/components/logo-search.php';
+require_once __DIR__ . '/components/navbar.php';
 ?>
 <main class="auth-page">
     <aside class="auth-visual">
         <img
-            src="../assets/images/editorial/second-hand-bookshop.webp"
+            src="assets/images/editorial/second-hand-bookshop.webp"
             alt="A reader discovering pre-loved books"
             width="1200"
             height="800"
@@ -28,7 +28,7 @@ require_once __DIR__ . '/../components/navbar.php';
     </aside>
     <div class="auth-container">
         <nav class="auth-breadcrumb" aria-label="Breadcrumb">
-            <a href="../index.php"><?= __('navbar.home') ?></a>
+            <a href="index.php"><?= __('navbar.home') ?></a>
             <i class="fa-solid fa-chevron-right"></i>
             <span>Create account</span>
         </nav>
@@ -84,11 +84,11 @@ require_once __DIR__ . '/../components/navbar.php';
             </form>
             <div class="auth-switch">
                 <span>Already have an account?</span>
-                <a href="login.php">Sign in</a>
+                <a href="pages/login.php">Sign in</a>
             </div>
         </section>
     </div>
 </main>
-<script src="../assets/js/api.js"></script>
-<script src="../js/register.js"></script>
-<?php require_once __DIR__ . '/../components/footer.php'; ?>
+<script src="assets/js/api.js"></script>
+<script src="js/register.js"></script>
+<?php require_once __DIR__ . '/components/footer.php'; ?>

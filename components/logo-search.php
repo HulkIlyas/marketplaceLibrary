@@ -51,7 +51,7 @@ require_once __DIR__ . '/../includes/translator.php';
                 <span><?= __('header.login') ?></span>
             </a>
 
-            <a href="<?= htmlspecialchars($basePath) ?>pages/register.php" class="action-item" data-auth-register>
+            <a href="<?= htmlspecialchars($basePath) ?>register.php" class="action-item" data-auth-register>
                 <i class="fa-solid fa-user-plus"></i>
                 <span><?= __('header.register') ?? 'Register' ?></span>
             </a>

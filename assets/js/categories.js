@@ -23,14 +23,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Render category cards dynamically
             categoryGrid.innerHTML = categories.map(category => {
-                const href = `${basePath}category.php?category=${encodeURIComponent(category.slug)}`;
+                const href = `${basePath}pages/category.php?category=${encodeURIComponent(category.slug)}`;
                 const iconClass = category.icon || 'fa-solid fa-folder';
+                const count = category.listing_count ?? 0;
 
                 return `
                     <a href="${href}" class="category-card">
                         <span class="category-arrow">→</span>
                         <i class="${iconClass}"></i>
-                        <h3>${escapeHtml(category.name)}</h3>
+                        <h3 data-count="${count} listings">${escapeHtml(category.name)}</h3>
                     </a>
                 `;
             }).join('');

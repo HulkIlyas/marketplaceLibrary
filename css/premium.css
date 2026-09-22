@@ -427,7 +427,7 @@
         justify-content: flex-end;
     }
 }
-.category-card h3:after {
+/* .category-card h3:after {
     content: "1,240 listings";
     display: block;
     margin-top: 7px;
@@ -448,6 +448,14 @@
 }
 .category-card:nth-child(6) h3:after {
     content: "870 listings";
+} */
+ .category-card h3::after {
+    content: attr(data-count);
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: normal;
+    margin-top: 4px;
 }
 .pagination {
     display: flex;

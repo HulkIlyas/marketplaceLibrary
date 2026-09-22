@@ -6,7 +6,7 @@
             <p class="section-subtitle"><?= __('categories.subtitle') ?></p>
         </div>
 
-        <div class="category-grid">
+        <div class="category-grid" id="categoryGrid">
             <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/category.php?category=books" class="category-card">
                 <span class="category-arrow">→</span>
                 <i class="fa-solid fa-book"></i>

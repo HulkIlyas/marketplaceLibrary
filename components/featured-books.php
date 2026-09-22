@@ -6,7 +6,7 @@
             <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/books.php" class="view-all"><?= __('featuredBooks.viewAll') ?></a>
         </div>
 
-        <div class="book-grid">
+        <div class="book-grid" id="booksGrid">
             <div class="book-card">
                 <div class="cover cover-one">
                     ATOMIC

@@ -69,6 +69,7 @@
 </footer>
 <script src="<?= htmlspecialchars($basePath ?? '') ?>js/main.js"></script>
 <script src="<?= htmlspecialchars($basePath ?? '') ?>assets/js/categories.js" defer></script>
+<script src="<?= htmlspecialchars($basePath ?? '') ?>assets/js/books.js" defer></script>
 </body>
 
 </html>

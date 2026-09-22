@@ -18,28 +18,32 @@ require_once __DIR__ . '/../components/navbar.php';
         <div class="catalog-layout">
             <aside class="catalog-filters">
                 <strong>Filters</strong>
-                <label>
+
+                <label for="categoryFilter">
                     Category
-                    <select>
-                        <option>All categories</option>
-                        <option>Books</option>
-                        <option>Manga</option>
+                    <select id="categoryFilter">
+                        <option value="">All categories</option>
+                        <!-- Dynamic category options loaded from API -->
                     </select>
                 </label>
-                <label>
+
+                <label for="conditionFilter">
                     Condition
-                    <select>
-                        <option>Any condition</option>
-                        <option>Like new</option>
-                        <option>Very good</option>
+                    <select id="conditionFilter">
+                        <option value="">Any condition</option>
+                        <option value="Like new">Like new</option>
+                        <option value="Very good">Very good</option>
+                        <option value="Good condition">Good condition</option>
                     </select>
                 </label>
-                <label>
+
+                <label for="listingTypeFilter">
                     Listing type
-                    <select>
-                        <option>Buy, sell or exchange</option>
-                        <option>Buy</option>
-                        <option>Exchange</option>
+                    <select id="listingTypeFilter">
+                        <option value="">Buy, sell or exchange</option>
+                        <option value="BUY">Buy</option>
+                        <option value="SELL">Sell</option>
+                        <option value="EXCHANGE">Exchange</option>
                     </select>
                 </label>
             </aside>
@@ -57,7 +61,7 @@ require_once __DIR__ . '/../components/navbar.php';
                     </select>
                 </div>
                 <?php require __DIR__ . '/../components/featured-books.php'; ?>
-                <nav class="pagination" aria-label="Catalog pages">
+                <nav class="pagination" id="paginationNav" aria-label="Catalog pages">
                     <a href="?page=1">←</a>
                     <a class="current" href="?page=1">1</a>
                     <a href="?page=2">2</a>

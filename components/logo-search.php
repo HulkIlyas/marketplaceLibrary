@@ -32,7 +32,7 @@ require_once __DIR__ . '/../includes/translator.php';
             <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            <a href="<?= htmlspecialchars($basePath) ?>profile.php#sell" class="sell-book-cta">
+            <a href="<?= htmlspecialchars($basePath) ?>pages/create-listing.php" class="sell-book-cta">
                 <i class="fa-solid fa-plus"></i>
                 Sell a Book
             </a>

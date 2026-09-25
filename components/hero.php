@@ -16,7 +16,7 @@
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
 
-                <a href="<?= htmlspecialchars($basePath ?? '') ?>profile.php#sell" class="btn btn-secondary">Sell Your Books</a>
+                <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/create-listing.php" class="btn btn-secondary">Sell Your Books</a>
             </div>
         </div>
 

@@ -19,7 +19,7 @@ require_once __DIR__ . '/components/navbar.php';
     }
 </script>
 
-<main class="account-page">
+<main class="account-page" data-listing-translations="<?= htmlspecialchars(json_encode($translations['myListings'], JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8') ?>">
     <section class="account-hero">
         <div class="container account-hero-inner">
             <div class="account-identity">
@@ -78,7 +78,7 @@ require_once __DIR__ . '/components/navbar.php';
                     data-tab="listings"
                 >
                     <i class="fa-solid fa-book"></i>
-                    <span>My Listings</span>
+                    <span><?= __('myListings.title') ?></span>
                 </button>
                 <button
                     class="account-tab"
@@ -133,8 +133,8 @@ require_once __DIR__ . '/components/navbar.php';
                     <article>
                         <span class="stat-icon"><i class="fa-solid fa-book"></i></span>
                         <div>
-                            <strong>0</strong>
-                            <span>Active listings</span>
+                            <strong id="active-listings-count">—</strong>
+                            <span><?= __('myListings.active') ?></span>
                         </div>
                     </article>
                     <article>
@@ -156,10 +156,10 @@ require_once __DIR__ . '/components/navbar.php';
                     <div>
                         <span class="eyebrow">GET STARTED</span>
                         <h3>Give a book its next chapter.</h3>
-                        <p>Your listings will be shown here when marketplace persistence is available.</p>
+                        <p><?= __('myListings.subtitle') ?></p>
                     </div>
                     <button class="btn btn-primary" type="button" data-account-tab="listings">
-                        View My Listings
+                        <?= __('myListings.title') ?>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
@@ -168,15 +168,17 @@ require_once __DIR__ . '/components/navbar.php';
             <section class="account-panel" id="panel-listings" role="tabpanel" data-panel="listings" hidden>
                 <div class="panel-heading">
                     <div>
-                        <span class="eyebrow">YOUR SHELF</span>
-                        <h2>My Listings</h2>
+                        <span class="eyebrow"><?= __('myListings.shelf') ?></span>
+                        <h2><?= __('myListings.title') ?></h2>
                     </div>
-                    <p>Manage the books you offer to the community.</p>
+                    <p><?= __('myListings.subtitle') ?></p>
                 </div>
-                <div class="account-empty">
+                <p id="listings-status" role="status" aria-live="polite"></p>
+                <div id="my-listings" class="my-listings"></div>
+                <div class="account-empty" id="listings-empty" hidden>
                     <span><i class="fa-solid fa-book-open"></i></span>
-                    <h3>No listings yet</h3>
-                    <p>Your active book listings will appear here when this feature is connected.</p>
+                    <h3><?= __('myListings.empty') ?></h3>
+                    <a class="btn btn-primary" href="pages/create-listing.php"><?= __('myListings.sellBook') ?></a>
                 </div>
             </section>
 
@@ -244,6 +246,16 @@ require_once __DIR__ . '/components/navbar.php';
         </div>
     </div>
 </main>
+
+<dialog id="delete-listing-dialog" class="delete-listing-dialog" aria-labelledby="delete-listing-title" aria-describedby="delete-listing-warning">
+    <h2 id="delete-listing-title"><?= __('myListings.confirm') ?></h2>
+    <p id="delete-listing-warning"><?= __('myListings.warning') ?></p>
+    <p id="delete-listing-error" role="alert"></p>
+    <div class="listing-actions">
+        <button class="btn btn-secondary" type="button" id="cancel-listing-delete" autofocus><?= __('myListings.cancel') ?></button>
+        <button class="btn btn-primary" type="button" id="confirm-listing-delete"><?= __('myListings.deleteListing') ?></button>
+    </div>
+</dialog>
 
 <script src="assets/js/account.js"></script>
 <?php require_once __DIR__ . '/components/footer.php'; ?>

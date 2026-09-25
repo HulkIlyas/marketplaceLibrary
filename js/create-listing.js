@@ -42,6 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const descriptionCount = document.getElementById('description-count');
     const status = document.getElementById('listing-status');
     const previewPanel = document.getElementById('listing-preview');
+    const publishButton = form.querySelector('button[type="submit"]');
+    const publishButtonContent = publishButton.innerHTML;
+    let isPublishing = false;
     let selectedPhotos = [];
 
     const preview = {
@@ -427,8 +430,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ), 'info');
     });
 
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
+        if (isPublishing) return;
         clearStatus();
 
         if (!validateForm()) {
@@ -445,14 +449,51 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        showStatus(
-            translate(
-                'publishUnavailable',
-                'Listing publishing will be available when the marketplace listing API is connected. Nothing has been uploaded or published.'
-            ),
-            'info'
-        );
-        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        isPublishing = true;
+        publishButton.disabled = true;
+        publishButton.textContent = translate('publishing', 'Publishing...');
+        form.setAttribute('aria-busy', 'true');
+
+        try {
+            const formData = new FormData();
+            ['title', 'author', 'isbn', 'category', 'condition', 'description', 'city'].forEach((name) => {
+                formData.append(name, form.elements[name].value.trim());
+            });
+            const listingType = getListingType();
+            formData.append('listing_type', listingType);
+            if (listingType === 'Sell' || listingType === 'Sell or Exchange') {
+                formData.append('price', priceInput.value);
+            }
+            selectedPhotos.forEach((photo) => formData.append('photos[]', photo.file));
+
+            const result = await apiRequest('/books', 'POST', formData, { redirectOnUnauthorized: false });
+            const createdId = result.data?.data?.id;
+            if (!result.ok || result.status !== 201 || !Number.isSafeInteger(Number(createdId)) || Number(createdId) <= 0) {
+                const fallback = result.status
+                    ? translate('publishFailed', 'Unable to publish listing.')
+                    : translate('publishNetworkError', 'Unable to connect to the API. Please try again.');
+                throw new Error(result.status ? (result.data?.error || fallback) : fallback);
+            }
+
+            // A storage failure must not turn a completed creation into a retry.
+            try {
+                localStorage.removeItem(DRAFT_KEY);
+            } catch (error) {
+                console.warn('Unable to clear the saved listing draft.', error);
+            }
+            showStatus(translate('publishSuccess', 'Listing published successfully.'), 'success');
+            status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            window.setTimeout(() => {
+                window.location.assign(`book-details.php?id=${encodeURIComponent(createdId)}`);
+            }, 800);
+        } catch (error) {
+            showStatus(error.message || translate('publishFailed', 'Unable to publish listing.'), 'error');
+            status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            isPublishing = false;
+            publishButton.disabled = false;
+            publishButton.innerHTML = publishButtonContent;
+            form.removeAttribute('aria-busy');
+        }
     });
 
     window.addEventListener('beforeunload', () => {

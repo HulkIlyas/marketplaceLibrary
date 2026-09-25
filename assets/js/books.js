@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 <h3>${escapeHtml(book.title)}</h3>
                                 <p class="author">${escapeHtml(book.author)} · ${escapeHtml(book.book_condition)}</p>
                                 <div class="price">${priceFormatted} MAD</div>
-                                <a href="${basePath}pages/book-details.php?id=${book.id}" class="btn-cart">
+                                <a href="book-details.php?id=${book.id}" class="btn-cart">
                                     View Details
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </a>

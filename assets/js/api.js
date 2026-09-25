@@ -1,9 +1,10 @@
 const API_BASE = 'http://localhost:8000';
 
-async function apiRequest(endpoint, method = 'GET', body = null) {
+async function apiRequest(endpoint, method = 'GET', body = null, { redirectOnUnauthorized = true } = {}) {
     const normalizedEndpoint = `/${endpoint.replace(/^\/+/, '')}`;
     const isLoginRequest = normalizedEndpoint === '/login' || normalizedEndpoint === '/users/login';
-    const headers = {
+    const isFormData = body instanceof FormData;
+    const headers = isFormData ? {} : {
         'Content-Type': 'application/json'
     };
 
@@ -14,7 +15,7 @@ async function apiRequest(endpoint, method = 'GET', body = null) {
 
     const config = { method, headers };
     if (body) {
-        config.body = JSON.stringify(body);
+        config.body = isFormData ? body : JSON.stringify(body);
     }
 
     try {
@@ -23,7 +24,7 @@ async function apiRequest(endpoint, method = 'GET', body = null) {
         const data = await response.json().catch(() => ({}));
 
         // Handle token expiration or unauthorized requests automatically
-        if (response.status === 401 && !isLoginRequest) {
+        if (response.status === 401 && !isLoginRequest && redirectOnUnauthorized) {
             Auth.logout();
         }
 

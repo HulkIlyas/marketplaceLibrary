@@ -40,10 +40,10 @@ require_once __DIR__ . '/../components/navbar.php';
             <p id="book-exchange-note" hidden><?= __('bookDetails.exchangeAccepted') ?></p>
             <p class="detail-description" id="book-description"></p>
             <div class="detail-actions">
-                <a href="cart.php" class="btn btn-primary" id="book-cart" hidden>
+                <button type="button" class="btn btn-primary" id="book-cart" hidden>
                     <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
                     <?= __('bookDetails.addToCart') ?>
-                </a>
+                </button>
                 <button type="button" class="btn btn-primary" id="book-exchange" aria-describedby="exchange-unavailable" disabled hidden>
                     <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i>
                     <?= __('bookDetails.proposeExchange') ?>
@@ -54,6 +54,7 @@ require_once __DIR__ . '/../components/navbar.php';
                 </a>
             </div>
             <p id="exchange-unavailable" hidden><?= __('bookDetails.exchangeUnavailable') ?></p>
+            <p id="cart-status" role="status" aria-live="polite"></p>
             <div class="seller-card" id="book-seller" hidden>
                 <span class="avatar" id="owner-avatar" aria-hidden="true"></span>
                 <div>

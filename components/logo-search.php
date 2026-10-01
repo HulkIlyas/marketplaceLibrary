@@ -51,7 +51,8 @@ require_once __DIR__ . '/../includes/translator.php';
                 <span><?= __('header.login') ?></span>
             </a>
 
-            <a href="<?= htmlspecialchars($basePath) ?>register.php" class="action-item" data-auth-register>
+            <?php $registerHref = ($basePath ?? '') === '../' ? 'register.php' : 'pages/register.php'; ?>
+            <a href="<?= htmlspecialchars($registerHref) ?>" class="action-item" data-auth-register>
                 <i class="fa-solid fa-user-plus"></i>
                 <span><?= __('header.register') ?? 'Register' ?></span>
             </a>
@@ -70,7 +71,7 @@ require_once __DIR__ . '/../includes/translator.php';
             <a href="<?= htmlspecialchars($basePath) ?>pages/cart.php" class="action-item cart-item">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span><?= __('header.cart') ?></span>
-                <span class="cart-count">0</span>
+                <span class="cart-count" aria-live="polite">0</span>
             </a>
         </div>
     </div>

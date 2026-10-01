@@ -1,76 +1,26 @@
 <?php
-
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/translator.php';
-
 $basePath = '../';
-$pageTitle = 'Cart | Marketplace Library';
-
+$pageTitle = __('commerce.cart') . ' | Marketplace Library';
 require_once __DIR__ . '/../components/header.php';
 require_once __DIR__ . '/../components/topbar.php';
 require_once __DIR__ . '/../components/logo-search.php';
 require_once __DIR__ . '/../components/navbar.php';
 ?>
-<main class="inner-page">
-    <section class="page-hero compact">
-        <div class="container">
-            <span class="eyebrow">YOUR SELECTION</span>
-            <h1>Shopping cart</h1>
-            <p>2 pre-loved books are ready for a new shelf.</p>
-        </div>
-    </section>
-    <div class="container cart-layout">
-        <section class="cart-items">
-            <article>
-                <div class="cart-cover pattern-a">
-                    ATOMIC
-                    <br />
-                    HABITS
-                </div>
-                <div>
-                    <h3>Atomic Habits</h3>
-                    <p>James Clear · Very good</p>
-                    <small>Sold by Salma B. · Marrakech</small>
-                </div>
-                <strong>180 MAD</strong>
-                <button aria-label="Remove item">×</button>
-            </article>
-            <article>
-                <div class="cart-cover pattern-c">
-                    LE PETIT
-                    <br />
-                    PRINCE
-                </div>
-                <div>
-                    <h3>Le Petit Prince</h3>
-                    <p>Antoine de Saint-Exupéry · Good</p>
-                    <small>Sold by Youssef A. · Rabat</small>
-                </div>
-                <strong>70 MAD</strong>
-                <button aria-label="Remove item">×</button>
-            </article>
-        </section>
-        <aside class="order-summary">
-            <h2>Order summary</h2>
-            <p>
-                <span>Subtotal</span>
-                <strong>250 MAD</strong>
-            </p>
-            <p>
-                <span>Delivery</span>
-                <strong>Calculated later</strong>
-            </p>
-            <hr />
-            <p class="total">
-                <span>Total</span>
-                <strong>250 MAD</strong>
-            </p>
-            <a class="btn btn-primary" href="checkout.php">Continue to checkout</a>
-            <small>
-                <i class="fa-solid fa-lock"></i>
-                Secure checkout
-            </small>
-        </aside>
-    </div>
-</main>
+<main class="inner-page commerce-page" id="cart-page">
+<section class="page-hero compact"><div class="container">
+<h1><?= __('commerce.cart') ?></h1><p id="cart-count"></p>
+<p id="commerce-status" class="commerce-status" role="status" aria-live="polite"></p>
+<button type="button" id="commerce-retry" class="btn btn-secondary"><?= __('commerce.retry') ?></button>
+</div></section>
+<div class="container cart-layout">
+<section><div id="cart-items" class="commerce-items"></div><div id="cart-empty" hidden>
+<h2><?= __('commerce.emptyCart') ?></h2><a href="books.php" class="btn btn-primary"><?= __('commerce.browse') ?></a>
+</div></section>
+<aside class="order-summary"><h2><?= __('commerce.summary') ?></h2><p><span><?= __('commerce.subtotal') ?></span><strong id="cart-subtotal"></strong></p>
+<p><span><?= __('commerce.delivery') ?></span><strong><?= __('commerce.later') ?></strong></p>
+<p class="total"><span><?= __('commerce.total') ?></span><strong id="cart-total"></strong></p>
+<a href="checkout.php" id="checkout-link" class="btn btn-primary" hidden><?= __('commerce.continue') ?></a>
+</aside></div></main><script src="../assets/js/cart-page.js" defer></script>
 <?php require __DIR__ . '/../components/footer.php'; ?>

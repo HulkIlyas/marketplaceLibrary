@@ -3,44 +3,54 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!categoryGrid) return;
 
+    const basePath = categoryGrid.dataset.basePath || '';
+    const categoryLabels = new Map(
+        Array.from(categoryGrid.querySelectorAll('[data-category-slug]')).map(card => [
+            card.dataset.categorySlug,
+            card.querySelector('h3')?.textContent.trim(),
+        ])
+    );
+
+    const formatListingCount = (count) => {
+        const numericCount = Number(count) || 0;
+        const label = numericCount === 1
+            ? categoryGrid.dataset.listingSingular
+            : categoryGrid.dataset.listingPlural;
+
+        return `${numericCount} ${label}`;
+    };
+
     try {
-        // Fetch categories from your API endpoint
         const res = await apiRequest('/category', 'GET');
 
         if (res.ok && Array.isArray(res.data?.data)) {
             const categories = res.data.data;
 
-            // Clear any loading indicator or existing content
-            categoryGrid.innerHTML = '';
-
             if (categories.length === 0) {
-                categoryGrid.innerHTML = '<p>No categories found.</p>';
+                categoryGrid.innerHTML = `<p>${escapeHtml(categoryGrid.dataset.noCategories)}</p>`;
                 return;
             }
 
-            // Define base path (fallback to empty string if undefined)
-            const basePath = window.basePath || '';
-
-            // Render category cards dynamically
             categoryGrid.innerHTML = categories.map(category => {
-                const href = `${basePath}pages/category.php?category=${encodeURIComponent(category.slug)}`;
+                const href = `${basePath}pages/books.php?category=${encodeURIComponent(category.slug)}`;
                 const iconClass = category.icon || 'fa-solid fa-folder';
                 const count = category.listing_count ?? 0;
+                const name = categoryLabels.get(category.slug) || category.name;
 
                 return `
-                    <a href="${href}" class="category-card">
+                    <a href="${href}" class="category-card" data-category-slug="${escapeHtml(category.slug)}">
                         <span class="category-arrow">→</span>
-                        <i class="${iconClass}"></i>
-                        <h3 data-count="${count} listings">${escapeHtml(category.name)}</h3>
+                        <i class="${escapeHtml(iconClass)}"></i>
+                        <h3 data-count="${escapeHtml(formatListingCount(count))}">${escapeHtml(name)}</h3>
                     </a>
                 `;
             }).join('');
         } else {
-            categoryGrid.innerHTML = '<p>Failed to load categories.</p>';
+            categoryGrid.innerHTML = `<p>${escapeHtml(categoryGrid.dataset.loadFailed)}</p>`;
         }
     } catch (error) {
         console.error('Error fetching categories:', error);
-        categoryGrid.innerHTML = '<p>An error occurred while loading categories.</p>';
+        categoryGrid.innerHTML = `<p>${escapeHtml(categoryGrid.dataset.loadError)}</p>`;
     }
 });
 

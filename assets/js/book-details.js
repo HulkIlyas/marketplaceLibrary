@@ -113,7 +113,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (types[type]) badge.classList.add(type.toLowerCase().replaceAll('_', '-'));
         const exchange = type === 'EXCHANGE' || type === 'SELL_OR_EXCHANGE';
         const sell = ['BUY', 'SELL', 'SELL_OR_EXCHANGE'].includes(type);
-        element('book-cart').hidden = !sell;
+        const cartButton = element('book-cart');
+        const cartStatus = element('cart-status');
+        cartButton.hidden = !['SELL', 'SELL_OR_EXCHANGE'].includes(type);
+        const refreshCart = () => {
+            cartButton.disabled = !Commerce.canBuy(book) || Cart.has(book.id);
+            cartButton.textContent = Cart.has(book.id) ? Commerce.t('alreadyInCart') : text('addToCart');
+        };
+        if (Auth.isAuthenticated() && Number(Auth.getUserPayload().user_id) === Number(book.owner_id)) cartStatus.textContent = Commerce.t('ownListing');
+        else if (book.listing_status !== 'ACTIVE') cartStatus.textContent = Commerce.t(book.listing_status);
+        refreshCart();
+        window.addEventListener('cartchange', refreshCart);
+        cartButton.addEventListener('click', () => {
+            if (!Commerce.canBuy(book)) return;
+            try { Cart.add(book.id); cartStatus.textContent = Commerce.t('addedToCart'); }
+            catch { cartStatus.textContent = Commerce.t('storageFailed'); }
+        });
         element('book-exchange').hidden = !exchange;
         element('exchange-unavailable').hidden = !exchange;
         element('book-exchange-note').hidden = type !== 'SELL_OR_EXCHANGE';

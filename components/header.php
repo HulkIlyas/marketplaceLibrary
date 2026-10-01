@@ -42,6 +42,10 @@ $textDirection = $lang === 'ar' ? 'rtl' : 'ltr';
 
     <script src="<?= htmlspecialchars($basePath) ?>assets/js/auth.js"></script>
     <script src="<?= htmlspecialchars($basePath) ?>assets/js/api.js"></script>
+    <script src="<?= htmlspecialchars($basePath) ?>assets/js/cart.js"></script>
+    <script src="<?= htmlspecialchars($basePath) ?>assets/js/commerce.js"></script>
+    <script type="application/json" id="commerce-translations"><?= json_encode($translations['commerce'] ?? [], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE) ?></script>
+    <link rel="stylesheet" href="<?= htmlspecialchars($basePath) ?>css/commerce.css" />
 </head>
 
 <body>

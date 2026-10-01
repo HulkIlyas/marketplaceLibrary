@@ -23,9 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             Auth.setToken(token);
+            Cart.mergeGuest();
             alertMessage.className = 'alert alert-success';
             alertMessage.textContent = result.data?.message || 'Login successful!';
-            window.location.href = '../profile.php';
+            window.location.href = new URLSearchParams(location.search).get('next') === 'checkout' ? 'checkout.php' : '../profile.php';
         } catch (error) {
             alertMessage.style.color = 'red';
             alertMessage.textContent = error.message || 'An error occurred while connecting to the server.';

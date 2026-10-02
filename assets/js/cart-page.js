@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = Commerce.node('article', null, 'commerce-item');
             card.dataset.bookId = book.id;
             const info = Commerce.node('div');
-            info.append(Commerce.node('h3',book.title), Commerce.node('p',book.author+' · '+book.book_condition),
+            info.append(Commerce.node('h3',book.title), Commerce.node('p',book.author+' · '+Commerce.condition(book.book_condition)),
                 Commerce.node('p',t('seller')+': '+book.owner_name+' · '+(book.city || '')),
                 Commerce.node('p',t(book.listing_type)), Commerce.node('strong',Commerce.money(book.price)));
             const actions = Commerce.node('div',null,'commerce-actions');
@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
             el('place-order').disabled = failed || loading || submitting || !current.length;
             if (!current.length && !failed && !loading) status.textContent = t('emptyCart');
         } else {
-            el('cart-count').textContent = Cart.count()+' '+t('items');
+            const count = Cart.count();
+            el('cart-count').textContent = count+' '+t(count === 1 ? 'item' : 'items');
             el('cart-empty').hidden = Cart.count() !== 0;
             el('checkout-link').hidden = failed || loading || !current.length;
         }

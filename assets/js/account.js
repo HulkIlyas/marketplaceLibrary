@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const name = user.name || 'Marketplace Library reader';
+    const translations = JSON.parse(document.querySelector('.account-page').dataset.listingTranslations);
+    const t = key => translations[key] || key;
+    const name = user.name || t('defaultReader');
     const email = user.email || '—';
     const initials =
         name
@@ -30,12 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setText('settings-name', name);
     setText('settings-email', email);
     setText('settings-user-id', user.user_id ?? '—');
+    const refreshWishlistCount = () => setText('wishlist-count', Wishlist.count());
+    refreshWishlistCount();
+    window.addEventListener('wishlistchange', refreshWishlistCount);
 
     const tabs = [...document.querySelectorAll('[data-tab]')];
     const panels = [...document.querySelectorAll('[data-panel]')];
 
-    const translations = JSON.parse(document.querySelector('.account-page').dataset.listingTranslations);
-    const t = key => translations[key] || key;
     const list = document.getElementById('my-listings');
     const empty = document.getElementById('listings-empty');
     const status = document.getElementById('listings-status');
@@ -82,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const info = node('div', undefined, 'listing-info');
             info.append(node('h3', book.title), node('p', book.author));
-            info.append(node('p', [book.book_condition, book.city].filter(Boolean).join(' · ')));
+            info.append(node('p', [Commerce.condition(book.book_condition), book.city].filter(Boolean).join(' · ')));
             const labels = { BUY: 'buy', SELL: 'sell', EXCHANGE: 'exchange', SELL_OR_EXCHANGE: 'sellOrExchange' };
             info.append(node('span', t(labels[book.listing_type] || 'sell'), 'listing-type'));
             info.append(node('strong', book.listing_type === 'EXCHANGE' ? t('availableForExchange')

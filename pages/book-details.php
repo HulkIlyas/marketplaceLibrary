@@ -48,13 +48,14 @@ require_once __DIR__ . '/../components/navbar.php';
                     <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i>
                     <?= __('bookDetails.proposeExchange') ?>
                 </button>
-                <a href="wishlist.php" class="btn btn-secondary">
+                <button type="button" class="btn btn-secondary" id="book-wishlist">
                     <i class="fa-regular fa-heart" aria-hidden="true"></i>
-                    <?= __('bookDetails.save') ?>
-                </a>
+                    <span><?= __('bookDetails.save') ?></span>
+                </button>
             </div>
             <p id="exchange-unavailable" hidden><?= __('bookDetails.exchangeUnavailable') ?></p>
             <p id="cart-status" role="status" aria-live="polite"></p>
+            <p id="wishlist-status" role="status" aria-live="polite"></p>
             <div class="seller-card" id="book-seller" hidden>
                 <span class="avatar" id="owner-avatar" aria-hidden="true"></span>
                 <div>

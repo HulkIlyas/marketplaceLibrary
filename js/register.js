@@ -90,6 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (result.data?.token) {
                 Auth.setToken(result.data.token);
+                Cart.mergeGuest();
+                Wishlist.mergeGuest();
                 window.location.href = '../profile.php';
                 return;
             }

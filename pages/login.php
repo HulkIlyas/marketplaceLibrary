@@ -16,14 +16,14 @@ require_once __DIR__ . '/../components/navbar.php';
     <aside class="auth-visual">
         <img
             src="../assets/images/editorial/second-hand-bookshop.webp"
-            alt="A reader discovering pre-loved books"
+            alt="<?= htmlspecialchars(__('auth.registerImageAlt')) ?>"
             width="1200"
             height="800"
         />
         <div class="auth-visual-copy">
-            <span>WELCOME BACK</span>
-            <h2>Your next chapter is waiting.</h2>
-            <p>Return to your shelf, listings, and reader community.</p>
+            <span><?= __('auth.loginEyebrow') ?></span>
+            <h2><?= __('auth.loginHeroTitle') ?></h2>
+            <p><?= __('auth.loginHeroDescription') ?></p>
         </div>
     </aside>
     <div class="auth-container">
@@ -39,7 +39,11 @@ require_once __DIR__ . '/../components/navbar.php';
                 <p><?= __('auth.loginSubtitle') ?></p>
             </header>
             <div id="alert-message" class="form-status" role="status" aria-live="polite"></div>
-            <form class="auth-form" id="login-form" method="POST">
+            <form class="auth-form" id="login-form" method="POST"
+                data-failure="<?= htmlspecialchars(__('auth.loginFailed')) ?>"
+                data-token-missing="<?= htmlspecialchars(__('auth.tokenMissing')) ?>"
+                data-success="<?= htmlspecialchars(__('auth.loginSuccess')) ?>"
+                data-network-error="<?= htmlspecialchars(__('auth.networkError')) ?>">
                 <div class="form-group">
                     <label for="email"><?= __('auth.email') ?></label>
                     <div class="input-wrapper">

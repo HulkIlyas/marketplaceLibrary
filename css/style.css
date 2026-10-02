@@ -88,13 +88,88 @@ body {
     display: none !important;
 }
 
+.catalog-layout > section {
+    min-width: 0;
+}
+
+.catalog-page .featured-books > .container {
+    width: 100%;
+}
+
+.cover.has-image {
+    padding: 0;
+}
+
+.cover.has-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+}
+
+.wish {
+    cursor: pointer;
+}
+
+.wish.is-saved {
+    color: #b42318;
+}
+
+.wishlist-remove {
+    width: 100%;
+    margin-top: 8px;
+}
+
+[data-wishlist-empty][hidden] {
+    display: none;
+}
+
 @media (max-width: 800px) {
+    .hero-content {
+        width: 100%;
+        min-width: 0;
+    }
+
     .catalog-filters.is-open {
         display: grid;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
     }
 }
 
 @media (max-width: 460px) {
+    .header-container {
+        gap: 8px;
+    }
+
+    .header-actions {
+        gap: 5px;
+        margin-inline-start: auto;
+        min-width: 0;
+    }
+
+    .action-item,
+    .menu-toggle {
+        padding: 5px;
+    }
+
+    .topbar-right {
+        gap: 12px;
+        padding: 0;
+    }
+
+    .topbar-right > span,
+    .topbar-right > a:not([href*="lang="]) {
+        display: none;
+    }
+
+    .hero-content {
+        width: 100%;
+        min-width: 0;
+    }
+
     .hero-buttons {
         flex-direction: column;
         align-items: stretch;

@@ -13,18 +13,17 @@
                     <br />
                     HABITS
                 </div>
-                <span class="listing-badge buy">BUY</span>
-                <button class="wish" aria-label="Save Atomic Habits">♡</button>
+                <span class="listing-badge buy"><?= __('featuredBooks.buy') ?></span>
 
                 <div class="book-info">
                     <h3>Atomic Habits</h3>
 
-                    <p class="author">James Clear · Very good</p>
+                    <p class="author">James Clear · <?= __('featuredBooks.veryGood') ?></p>
 
                     <div class="price">180 MAD</div>
 
                     <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/book-details.php" class="btn-cart">
-                        View Details
+                        <?= __('featuredBooks.viewDetails') ?>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
@@ -38,18 +37,17 @@
                     <br />
                     OF MONEY
                 </div>
-                <span class="listing-badge sell">SELL</span>
-                <button class="wish" aria-label="Save The Psychology of Money">♡</button>
+                <span class="listing-badge sell"><?= __('featuredBooks.sell') ?></span>
 
                 <div class="book-info">
                     <h3>The Psychology of Money</h3>
 
-                    <p class="author">Morgan Housel · Like new</p>
+                    <p class="author">Morgan Housel · <?= __('featuredBooks.likeNew') ?></p>
 
                     <div class="price">150 MAD</div>
 
                     <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/book-details.php" class="btn-cart">
-                        View Details
+                        <?= __('featuredBooks.viewDetails') ?>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
@@ -61,18 +59,17 @@
                     <br />
                     CODE
                 </div>
-                <span class="listing-badge exchange">EXCHANGE</span>
-                <button class="wish" aria-label="Save Clean Code">♡</button>
+                <span class="listing-badge exchange"><?= __('featuredBooks.exchange') ?></span>
 
                 <div class="book-info">
                     <h3>Clean Code</h3>
 
-                    <p class="author">Robert C. Martin · Good condition</p>
+                    <p class="author">Robert C. Martin · <?= __('featuredBooks.good') ?></p>
 
                     <div class="price">210 MAD</div>
 
                     <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/book-details.php" class="btn-cart">
-                        Trade only
+                        <?= __('featuredBooks.tradeOnly') ?>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
@@ -84,18 +81,17 @@
                     <br />
                     WORK
                 </div>
-                <span class="listing-badge buy">BUY</span>
-                <button class="wish" aria-label="Save Deep Work">♡</button>
+                <span class="listing-badge buy"><?= __('featuredBooks.buy') ?></span>
 
                 <div class="book-info">
                     <h3>Deep Work</h3>
 
-                    <p class="author">Cal Newport · Very good</p>
+                    <p class="author">Cal Newport · <?= __('featuredBooks.veryGood') ?></p>
 
                     <div class="price">170 MAD</div>
 
                     <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/book-details.php" class="btn-cart">
-                        View Details
+                        <?= __('featuredBooks.viewDetails') ?>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>

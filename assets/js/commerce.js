@@ -3,6 +3,12 @@ const Commerce = {
     t(key) { return JSON.parse(document.getElementById('commerce-translations').textContent)[key] || key; },
     node(tag, value, className) { const el = document.createElement(tag); if (value != null) el.textContent = value; if (className) el.className = className; return el; },
     money(value) { return new Intl.NumberFormat(document.documentElement.lang, { style:'currency', currency:'MAD' }).format(Number(value)); },
+    condition(value) {
+        const normalized = String(value || '').trim().toLowerCase().replaceAll(' ', '_');
+        const key = 'condition_' + normalized.charAt(0).toUpperCase() + normalized.slice(1);
+        const translated = this.t(key);
+        return translated === key ? value : translated;
+    },
     error(result, fallback = 'loadFailed') { return this.t(result.data?.code || fallback); },
     canBuy(book) { return ['SELL','SELL_OR_EXCHANGE'].includes(book.listing_type) && book.listing_status === 'ACTIVE' && !(Auth.isAuthenticated() && Number(Auth.getUserPayload().user_id) === Number(book.owner_id)); },
     image(url, title) {

@@ -14,22 +14,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await apiRequest('/login', 'POST', { email, password });
 
             if (!result.ok) {
-                throw new Error(result.data?.error || result.data?.message || 'Login failed.');
+                throw new Error(result.data?.error || result.data?.message || loginForm.dataset.failure);
             }
 
             const token = result.data?.token;
             if (!token) {
-                throw new Error('Login response did not include an authentication token.');
+                throw new Error(loginForm.dataset.tokenMissing);
             }
 
             Auth.setToken(token);
             Cart.mergeGuest();
+            Wishlist.mergeGuest();
             alertMessage.className = 'alert alert-success';
-            alertMessage.textContent = result.data?.message || 'Login successful!';
+            alertMessage.textContent = result.data?.message || loginForm.dataset.success;
             window.location.href = new URLSearchParams(location.search).get('next') === 'checkout' ? 'checkout.php' : '../profile.php';
         } catch (error) {
             alertMessage.style.color = 'red';
-            alertMessage.textContent = error.message || 'An error occurred while connecting to the server.';
+            alertMessage.textContent = error.message || loginForm.dataset.networkError;
         }
     });
 });

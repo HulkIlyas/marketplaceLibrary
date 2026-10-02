@@ -4,7 +4,7 @@ require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/translator.php';
 
 $basePath = '../';
-$pageTitle = 'Contact | Marketplace Library';
+$pageTitle = __('contact.pageTitle') . ' | Marketplace Library';
 
 require_once __DIR__ . '/../components/header.php';
 require_once __DIR__ . '/../components/topbar.php';
@@ -14,42 +14,42 @@ require_once __DIR__ . '/../components/navbar.php';
 <main class="inner-page">
     <div class="container contact-layout">
         <section>
-            <span class="eyebrow">LET'S TALK BOOKS</span>
-            <h1>How can we help?</h1>
-            <p>Questions about buying, selling or exchanging? Our team would love to hear from you.</p>
+            <span class="eyebrow"><?= __('contact.eyebrow') ?></span>
+            <h1><?= __('contact.title') ?></h1>
+            <p><?= __('contact.description') ?></p>
             <div class="contact-method">
                 <i class="fa-regular fa-envelope"></i>
                 <span>
-                    <strong>Email us</strong>
+                    <strong><?= __('contact.emailUs') ?></strong>
                     support@marketplace.com
                 </span>
             </div>
             <div class="contact-method">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>
-                    <strong>Based in</strong>
-                    Morocco
+                    <strong><?= __('contact.basedIn') ?></strong>
+                    <?= __('footer.country') ?>
                 </span>
             </div>
         </section>
         <form class="contact-form">
             <label>
-                Name
+                <?= __('contact.name') ?>
                 <input type="text" required />
             </label>
             <label>
-                Email
+                <?= __('contact.email') ?>
                 <input type="email" required />
             </label>
             <label>
-                Subject
+                <?= __('contact.subject') ?>
                 <input type="text" required />
             </label>
             <label>
-                Message
+                <?= __('contact.message') ?>
                 <textarea rows="6" required></textarea>
             </label>
-            <button class="btn btn-primary">Send message</button>
+            <button class="btn btn-primary"><?= __('contact.send') ?></button>
         </form>
     </div>
 </main>

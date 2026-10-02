@@ -54,7 +54,7 @@ a {
 }
 .nav-menu {
     height: 48px;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 32px;
     margin: 0;
 }
@@ -433,7 +433,7 @@ a {
     }
     .nav-menu {
         overflow-x: auto;
-        justify-content: flex-start;
+        justify-content: center;
         gap: 24px;
     }
     .hero {

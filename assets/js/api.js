@@ -31,6 +31,6 @@ async function apiRequest(endpoint, method = 'GET', body = null, { redirectOnUna
         return { ok: response.ok, status: response.status, data };
     } catch (err) {
         console.error('API Error:', err);
-        return { ok: false, data: { error: 'Failed to connect to the API server.' } };
+        return { ok: false, status: 0, data: { code: 'NETWORK_ERROR' } };
     }
 }

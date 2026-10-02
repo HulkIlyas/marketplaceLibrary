@@ -6,16 +6,16 @@ $params = $_GET;
     <div class="container topbar-container">
         <div class="topbar-left">
             <i class="fa-solid fa-graduation-cap"></i>
-            <span>Free listings for students</span>
+            <span><?= __('topbar.studentListings') ?></span>
         </div>
 
         <div class="topbar-right">
-            <span class="topbar-message">Buy · Sell · Exchange books</span>
-            <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/contact.php">Help</a>
+            <span class="topbar-message"><?= __('topbar.marketplaceMessage') ?></span>
+            <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/contact.php"><?= __('topbar.help') ?></a>
 
             <span>|</span>
 
-            <a href="<?= htmlspecialchars($basePath ?? '') ?>profile.php#orders">Track Order</a>
+            <a href="<?= htmlspecialchars($basePath ?? '') ?>profile.php#orders"><?= __('topbar.trackOrder') ?></a>
 
             <span>|</span>
 

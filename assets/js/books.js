@@ -6,11 +6,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const categorySelect = document.getElementById('categoryFilter');
     const conditionSelect = document.getElementById('conditionFilter');
     const listingTypeSelect = document.getElementById('listingTypeFilter');
+    const translations = JSON.parse(booksCount?.dataset.translations || '{}');
+    const text = (key) => translations[key] || key;
 
     let currentPage = 1;
 
     if (categorySelect) {
-        await loadCategories(categorySelect);
+        await loadCategories(categorySelect, translations);
     }
 
     async function fetchFilteredBooks(page = 1) {
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 booksGrid.innerHTML = '';
 
                 if (books.length === 0) {
-                    booksGrid.innerHTML = '<p>No books match your selected filters.</p>';
+                    booksGrid.innerHTML = `<p>${escapeHtml(text('noBooks'))}</p>`;
                     if (paginationNav) paginationNav.innerHTML = '';
                     return;
                 }
@@ -53,7 +55,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 booksGrid.innerHTML = books.map(book => {
                     const listingType = (book.listing_type || 'BUY').toUpperCase();
                     const badgeClass = listingType.toLowerCase();
-                    const priceFormatted = Math.round(book.price || 0);
+                    const priceFormatted = listingType === 'EXCHANGE'
+                        ? text('availableForExchange')
+                        : `${Math.round(book.price || 0)} MAD`;
                     const coverStyle = book.cover_color ? `style="background-color: ${book.cover_color};"` : '';
                     const coverTitle = escapeHtml(book.title).replace(/\s+/g, '<br />');
 
@@ -62,31 +66,32 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <div class="cover cover-one" ${coverStyle}>
                                 ${coverTitle}
                             </div>
-                            <span class="listing-badge ${badgeClass}">${escapeHtml(listingType)}</span>
-                            <button class="wish" aria-label="Save ${escapeHtml(book.title)}">♡</button>
+                            <span class="listing-badge ${badgeClass}">${escapeHtml(text(listingType))}</span>
+                            <button type="button" class="wish${Wishlist.has(book.id) ? ' is-saved' : ''}" data-book-id="${Number(book.id)}" aria-pressed="${Wishlist.has(book.id)}" aria-label="${escapeHtml(text('saveBook').replace('%s', book.title))}">${Wishlist.has(book.id) ? '♥' : '♡'}</button>
 
                             <div class="book-info">
                                 <h3>${escapeHtml(book.title)}</h3>
-                                <p class="author">${escapeHtml(book.author)} · ${escapeHtml(book.book_condition)}</p>
-                                <div class="price">${priceFormatted} MAD</div>
+                                <p class="author">${escapeHtml(book.author)} · ${escapeHtml(conditionLabel(book.book_condition))}</p>
+                                <div class="price">${escapeHtml(priceFormatted)}</div>
                                 <a href="book-details.php?id=${book.id}" class="btn-cart">
-                                    View Details
+                                    ${escapeHtml(text('viewDetails'))}
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
                     `;
                 }).join('');
+                Wishlist.refreshButtons();
 
                 // Render dynamic pagination links
                 renderPagination(paginationNav, pagination);
 
             } else {
-                booksGrid.innerHTML = '<p>Failed to load books.</p>';
+                booksGrid.innerHTML = `<p>${escapeHtml(text('loadFailed'))}</p>`;
             }
         } catch (error) {
             console.error('Error fetching filtered books:', error);
-            booksGrid.innerHTML = '<p>An error occurred while loading books.</p>';
+            booksGrid.innerHTML = `<p>${escapeHtml(text('loadError'))}</p>`;
         }
     }
 
@@ -137,14 +142,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     fetchFilteredBooks(1);
 });
 
-async function loadCategories(selectEl) {
+function conditionLabel(value) {
+    const normalized = String(value || '').trim().toLowerCase().replaceAll(' ', '_');
+    const key = `condition_${normalized.charAt(0).toUpperCase()}${normalized.slice(1)}`;
+    return translationsForCatalog()[key] || value;
+}
+
+function translationsForCatalog() {
+    const count = document.getElementById('booksCount');
+    return JSON.parse(count?.dataset.translations || '{}');
+}
+
+async function loadCategories(selectEl, translations = {}) {
     try {
         const res = await apiRequest('/category', 'GET');
         if (res.ok && Array.isArray(res.data?.data)) {
             res.data.data.forEach(cat => {
                 const option = document.createElement('option');
                 option.value = cat.slug;
-                option.textContent = cat.name;
+                option.textContent = translations[`category_${cat.slug}`] || cat.name;
                 selectEl.appendChild(option);
             });
 

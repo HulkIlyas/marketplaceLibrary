@@ -21,14 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.querySelectorAll('.wish').forEach((button) => {
-        button.addEventListener('click', () => {
-            const saved = button.classList.toggle('is-saved');
-            button.textContent = saved ? '♥' : '♡';
-            button.setAttribute('aria-pressed', String(saved));
-        });
-    });
-
     document.querySelector('.mobile-filter')?.addEventListener('click', () => {
         document.querySelector('.catalog-filters')?.classList.toggle('is-open');
     });
@@ -40,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             input.type = showing ? 'password' : 'text';
             button.setAttribute(
                 'aria-label',
-                showing ? (button.dataset.showLabel || 'Show password') : (button.dataset.hideLabel || 'Hide password')
+                showing ? button.dataset.showLabel : button.dataset.hideLabel
             );
             button.querySelector('i').className = showing ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash';
         });
@@ -49,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('[data-ui-newsletter]')?.addEventListener('submit', (event) => {
         event.preventDefault();
         const button = event.currentTarget.querySelector('button');
-        button.textContent = 'Subscribed';
+            button.textContent = button.dataset.subscribedLabel;
         button.disabled = true;
     });
 
@@ -63,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         accountLink.href = accountLink.dataset.profileHref;
         if (label) {
-            label.textContent = user?.name || 'My Account';
+            label.textContent = user?.name || accountLink.dataset.accountLabel;
         }
 
         if (registerLink) {

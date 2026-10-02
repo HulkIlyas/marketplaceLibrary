@@ -82,6 +82,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
         const book = result.data.data;
+        const wishlistButton = element('book-wishlist');
+        const wishlistStatus = element('wishlist-status');
+        const refreshWishlist = () => {
+            const saved = Wishlist.has(book.id);
+            wishlistButton.classList.toggle('is-saved', saved);
+            wishlistButton.setAttribute('aria-pressed', String(saved));
+            wishlistButton.querySelector('i').className = `${saved ? 'fa-solid' : 'fa-regular'} fa-heart`;
+            wishlistButton.querySelector('span').textContent = text(saved ? 'saved' : 'save');
+        };
+        wishlistButton.addEventListener('click', () => {
+            const saved = Wishlist.toggle(book.id);
+            wishlistStatus.textContent = text(saved ? 'addedToWishlist' : 'removedFromWishlist');
+        });
+        window.addEventListener('wishlistchange', refreshWishlist);
+        refreshWishlist();
         for (const [node, value] of Object.entries({
             'book-title': book.title, 'book-breadcrumb': book.title, 'book-author': book.author,
             'book-description': book.description, 'cover-title': book.title,
@@ -98,7 +113,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!book[field]) continue;
             const node = document.createElement('span');
             node.dataset.field = field;
-            node.textContent = `${text(label)}: ${book[field]}`;
+            const rawValue = book[field];
+            const normalized = String(rawValue).trim().toLowerCase().replaceAll(' ', '_');
+            const conditionKey = `condition_${normalized.charAt(0).toUpperCase()}${normalized.slice(1)}`;
+            const translatedCondition = text(conditionKey);
+            const value = field === 'book_condition'
+                ? (translatedCondition === conditionKey ? rawValue : translatedCondition)
+                : rawValue;
+            node.textContent = `${text(label)}: ${value}`;
             meta.append(node);
         }
         if (book.owner_name) {

@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/translator.php';
 
 $basePath = '';
-$pageTitle = 'My Account | Marketplace Library';
+$pageTitle = __('account.pageTitle') . ' | Marketplace Library';
 $pageStylesheet = 'account.css';
 
 require_once __DIR__ . '/components/header.php';
@@ -19,45 +19,45 @@ require_once __DIR__ . '/components/navbar.php';
     }
 </script>
 
-<main class="account-page" data-listing-translations="<?= htmlspecialchars(json_encode($translations['myListings'], JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8') ?>">
+<main class="account-page" data-listing-translations="<?= htmlspecialchars(json_encode(array_merge($translations['myListings'], $translations['account']), JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8') ?>">
     <section class="account-hero">
         <div class="container account-hero-inner">
             <div class="account-identity">
                 <span class="account-avatar" id="account-avatar" aria-hidden="true">—</span>
                 <div>
-                    <span class="eyebrow">MARKETPLACE LIBRARY</span>
-                    <h1>My Account</h1>
-                    <p class="account-name" id="account-name">Loading account…</p>
+                    <span class="eyebrow"><?= __('account.brandEyebrow') ?></span>
+                    <h1><?= __('account.pageTitle') ?></h1>
+                    <p class="account-name" id="account-name"><?= __('account.loading') ?></p>
                     <p class="account-email" id="account-email"></p>
                     <span class="member-badge">
                         <i class="fa-solid fa-circle-check"></i>
-                        Account active
+                        <?= __('account.active') ?>
                     </span>
                 </div>
             </div>
             <div class="account-actions">
                 <button class="btn btn-secondary" type="button" data-account-tab="settings">
                     <i class="fa-regular fa-pen-to-square"></i>
-                    Edit Profile
+                    <?= __('account.editProfile') ?>
                 </button>
                 <button class="btn btn-primary" id="logout-button" type="button">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    Logout
+                    <?= __('header.logout') ?>
                 </button>
             </div>
         </div>
     </section>
 
     <div class="container account-layout">
-        <aside class="account-sidebar" aria-label="Account navigation">
+        <aside class="account-sidebar" aria-label="<?= htmlspecialchars(__('account.navigation')) ?>">
             <div class="account-sidebar-heading">
                 <span class="account-avatar account-avatar-small" id="sidebar-avatar" aria-hidden="true">—</span>
                 <div>
-                    <strong id="sidebar-name">My Account</strong>
-                    <small>Reader account</small>
+                    <strong id="sidebar-name"><?= __('account.pageTitle') ?></strong>
+                    <small><?= __('account.readerAccount') ?></small>
                 </div>
             </div>
-            <nav class="account-tabs" role="tablist" aria-label="Account sections">
+            <nav class="account-tabs" role="tablist" aria-label="<?= htmlspecialchars(__('account.sections')) ?>">
                 <button
                     class="account-tab is-active"
                     type="button"
@@ -67,7 +67,7 @@ require_once __DIR__ . '/components/navbar.php';
                     data-tab="overview"
                 >
                     <i class="fa-solid fa-table-columns"></i>
-                    <span>Overview</span>
+                    <span><?= __('account.overview') ?></span>
                 </button>
                 <button
                     class="account-tab"
@@ -89,7 +89,7 @@ require_once __DIR__ . '/components/navbar.php';
                     data-tab="wishlist"
                 >
                     <i class="fa-regular fa-heart"></i>
-                    <span>Wishlist</span>
+                    <span><?= __('wishlist.pageTitle') ?></span>
                 </button>
                 <button
                     class="account-tab"
@@ -118,7 +118,7 @@ require_once __DIR__ . '/components/navbar.php';
                     data-tab="settings"
                 >
                     <i class="fa-solid fa-gear"></i>
-                    <span>Profile Settings</span>
+                    <span><?= __('account.settings') ?></span>
                 </button>
             </nav>
         </aside>
@@ -127,14 +127,14 @@ require_once __DIR__ . '/components/navbar.php';
             <section class="account-panel is-active" id="panel-overview" role="tabpanel" data-panel="overview">
                 <div class="panel-heading">
                     <div>
-                        <span class="eyebrow">AT A GLANCE</span>
+                        <span class="eyebrow"><?= __('account.glance') ?></span>
                         <h2>
-                            Welcome back,
-                            <span id="welcome-name">reader</span>
+                            <?= __('account.welcomeBack') ?>
+                            <span id="welcome-name"><?= __('account.reader') ?></span>
                             .
                         </h2>
                     </div>
-                    <p>Your Marketplace Library activity will appear here.</p>
+                    <p><?= __('account.activityDescription') ?></p>
                 </div>
                 <div class="account-stats">
                     <article>
@@ -147,8 +147,8 @@ require_once __DIR__ . '/components/navbar.php';
                     <article>
                         <span class="stat-icon amber"><i class="fa-regular fa-heart"></i></span>
                         <div>
-                            <strong>0</strong>
-                            <span>Wishlist items</span>
+                            <strong id="wishlist-count">0</strong>
+                            <span><?= __('account.wishlistItems') ?></span>
                         </div>
                     </article>
                     <article>
@@ -161,8 +161,8 @@ require_once __DIR__ . '/components/navbar.php';
                 </div>
                 <div class="account-card getting-started">
                     <div>
-                        <span class="eyebrow">GET STARTED</span>
-                        <h3>Give a book its next chapter.</h3>
+                        <span class="eyebrow"><?= __('account.getStarted') ?></span>
+                        <h3><?= __('account.nextChapter') ?></h3>
                         <p><?= __('myListings.subtitle') ?></p>
                     </div>
                     <button class="btn btn-primary" type="button" data-account-tab="listings">
@@ -189,19 +189,21 @@ require_once __DIR__ . '/components/navbar.php';
                 </div>
             </section>
 
-            <section class="account-panel" id="panel-wishlist" role="tabpanel" data-panel="wishlist" hidden>
+            <section class="account-panel" id="panel-wishlist" role="tabpanel" data-panel="wishlist" data-wishlist-page data-profile-wishlist data-loading-label="<?= htmlspecialchars(__('wishlist.loading')) ?>" data-error-label="<?= htmlspecialchars(__('wishlist.loadFailed')) ?>" data-wishlist-translations="<?= htmlspecialchars(json_encode(array_merge($translations['wishlist'], $translations['catalog']), JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8') ?>" hidden>
                 <div class="panel-heading">
                     <div>
-                        <span class="eyebrow">SAVED BOOKS</span>
-                        <h2>Wishlist</h2>
+                        <span class="eyebrow"><?= __('account.savedBooks') ?></span>
+                        <h2><?= __('wishlist.pageTitle') ?></h2>
                     </div>
-                    <p>Keep track of books you would like to read next.</p>
+                    <p><?= __('account.wishlistDescription') ?></p>
                 </div>
-                <div class="account-empty">
+                <p data-wishlist-status role="status" aria-live="polite"></p>
+                <div class="book-grid" data-wishlist-list></div>
+                <div class="account-empty" data-wishlist-empty hidden>
                     <span><i class="fa-regular fa-heart"></i></span>
-                    <h3>Your wishlist is empty</h3>
-                    <p>Browse the marketplace to discover and save your next read.</p>
-                    <a class="btn btn-primary" href="pages/books.php">Explore Books</a>
+                    <h3><?= __('account.wishlistEmpty') ?></h3>
+                    <p><?= __('account.wishlistEmptyDescription') ?></p>
+                    <a class="btn btn-primary" href="pages/books.php"><?= __('home.exploreBooks') ?></a>
                 </div>
             </section>
 
@@ -221,29 +223,29 @@ require_once __DIR__ . '/components/navbar.php';
             <section class="account-panel" id="panel-settings" role="tabpanel" data-panel="settings" hidden>
                 <div class="panel-heading">
                     <div>
-                        <span class="eyebrow">ACCOUNT DETAILS</span>
-                        <h2>Profile Settings</h2>
+                        <span class="eyebrow"><?= __('account.details') ?></span>
+                        <h2><?= __('account.settings') ?></h2>
                     </div>
-                    <p>These details come from your authenticated account.</p>
+                    <p><?= __('account.authenticatedDetails') ?></p>
                 </div>
                 <div class="account-card profile-details">
                     <dl>
                         <div>
-                            <dt>Name</dt>
+                            <dt><?= __('account.name') ?></dt>
                             <dd id="settings-name">—</dd>
                         </div>
                         <div>
-                            <dt>Email</dt>
+                            <dt><?= __('account.email') ?></dt>
                             <dd id="settings-email">—</dd>
                         </div>
                         <div>
-                            <dt>User ID</dt>
+                            <dt><?= __('account.userId') ?></dt>
                             <dd id="settings-user-id">—</dd>
                         </div>
                     </dl>
                     <p class="settings-note">
                         <i class="fa-solid fa-circle-info"></i>
-                        Profile editing will be available when the account update feature is connected.
+                        <?= __('account.editingUnavailable') ?>
                     </p>
                 </div>
             </section>
@@ -263,4 +265,5 @@ require_once __DIR__ . '/components/navbar.php';
 
 <script src="assets/js/account.js"></script>
 <script src="assets/js/orders.js"></script>
+<script src="assets/js/wishlist-page.js"></script>
 <?php require_once __DIR__ . '/components/footer.php'; ?>

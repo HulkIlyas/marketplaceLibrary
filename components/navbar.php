@@ -3,9 +3,8 @@
 $currentPage = $currentPage ?? match (basename($_SERVER['SCRIPT_NAME'] ?? '')) {
     'index.php' => 'home',
     'books.php', 'book-details.php' => 'books',
-    'category.php' => in_array($_GET['category'] ?? '', ['manga', 'school'], true)
-        ? $_GET['category']
-        : 'categories',
+    'category.php' => 'categories',
+    'about.php' => 'about',
     default => '',
 };
 ?>
@@ -37,32 +36,13 @@ $currentPage = $currentPage ?? match (basename($_SERVER['SCRIPT_NAME'] ?? '')) {
             </li>
 
             <li>
-                <a href="<?= htmlspecialchars($basePath) ?>pages/books.php?sort=newest">
-                    <?= __('navbar.newArrivals') ?>
-                </a>
-            </li>
-
-            <li>
-                <a href="<?= htmlspecialchars($basePath) ?>pages/books.php?sort=popular">
-                    <?= __('navbar.bestSellers') ?>
-                </a>
-            </li>
-
-            <li>
                 <a
-                    href="<?= htmlspecialchars($basePath) ?>pages/category.php?category=school"<?= $currentPage === 'school' ? ' class="active"' : '' ?>
+                    href="<?= htmlspecialchars($basePath) ?>pages/about.php"<?= $currentPage === 'about' ? ' class="active"' : '' ?>
                 >
-                    <?= __('navbar.schoolSupplies') ?>
+                    <?= __('navbar.about') ?>
                 </a>
             </li>
 
-            <li>
-                <a
-                    href="<?= htmlspecialchars($basePath) ?>pages/category.php?category=manga"<?= $currentPage === 'manga' ? ' class="active"' : '' ?>
-                >
-                    <?= __('navbar.manga') ?>
-                </a>
-            </li>
         </ul>
     </div>
 </nav>

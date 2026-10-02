@@ -1,14 +1,14 @@
 <section class="newsletter">
     <div class="container">
         <div class="newsletter-content">
-            <h2>Subscribe to our Newsletter</h2>
+            <h2><?= __('newsletter.title') ?></h2>
 
-            <p>Get the latest books, exclusive offers, and updates delivered to your inbox.</p>
+            <p><?= __('newsletter.description') ?></p>
 
             <form class="newsletter-form" data-ui-newsletter>
-                <input type="email" placeholder="Enter your email address" required />
+                <input type="email" placeholder="<?= htmlspecialchars(__('newsletter.emailPlaceholder')) ?>" required />
 
-                <button type="submit">Subscribe</button>
+                <button type="submit" data-subscribed-label="<?= htmlspecialchars(__('newsletter.subscribed')) ?>"><?= __('newsletter.subscribe') ?></button>
             </form>
         </div>
     </div>

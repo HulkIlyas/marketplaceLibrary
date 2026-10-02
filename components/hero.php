@@ -1,22 +1,22 @@
 <section class="hero">
     <div class="container hero-container">
         <div class="hero-content">
-            <span class="hero-subtitle">BOOKS DESERVE A SECOND CHAPTER</span>
+            <span class="hero-subtitle"><?= __('home.heroEyebrow') ?></span>
 
             <h1>
-                Give books
-                <span>a second life.</span>
+                <?= __('home.heroTitle') ?>
+                <span><?= __('home.heroHighlight') ?></span>
             </h1>
 
-            <p>Buy, sell and exchange beloved books with readers in your community.</p>
+            <p><?= __('home.heroDescription') ?></p>
 
             <div class="hero-buttons">
                 <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/books.php" class="btn btn-primary">
-                    Explore Books
+                    <?= __('home.exploreBooks') ?>
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
 
-                <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/create-listing.php" class="btn btn-secondary">Sell Your Books</a>
+                <a href="<?= htmlspecialchars($basePath ?? '') ?>pages/create-listing.php" class="btn btn-secondary"><?= __('home.sellYourBooks') ?></a>
             </div>
         </div>
 
@@ -24,34 +24,34 @@
             <img
                 class="hero-photo"
                 src="<?= htmlspecialchars($basePath ?? '') ?>assets/images/hero/hero-reading-room.webp"
-                alt="A cozy independent bookstore reading room"
+                alt="<?= htmlspecialchars(__('home.heroImageAlt')) ?>"
                 width="1400"
                 height="933"
                 fetchpriority="high"
             />
             <div class="hero-market-badge">
                 <i class="fa-solid fa-arrows-rotate"></i>
-                Buy · Sell · Exchange
+                <?= __('home.buySellExchange') ?>
             </div>
             <div class="hero-note">
                 <i class="fa-solid fa-heart"></i>
                 <strong>10k+</strong>
-                <small>books waiting</small>
+                <small><?= __('home.booksWaiting') ?></small>
             </div>
         </div>
 
         <div class="hero-proof">
             <span>
                 <strong>10k+</strong>
-                listings
+                <?= __('home.listings') ?>
             </span>
             <span>
                 <strong>500+</strong>
-                readers
+                <?= __('home.readers') ?>
             </span>
             <span>
-                <strong>3 ways</strong>
-                to discover
+                <strong><?= __('home.threeWays') ?></strong>
+                <?= __('home.toDiscover') ?>
             </span>
         </div>
     </div>

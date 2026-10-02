@@ -17,9 +17,9 @@ require_once 'components/navbar.php';
     <section class="recent-listings">
         <div class="container">
             <div class="section-header">
-                <span class="eyebrow">FRESH FROM OUR READERS</span>
-                <h2>Recently added</h2>
-                <p>New stories arrive every day.</p>
+                <span class="eyebrow"><?= __('home.recentEyebrow') ?></span>
+                <h2><?= __('home.recentTitle') ?></h2>
+                <p><?= __('home.recentDescription') ?></p>
             </div>
             <div class="recent-grid">
                 <article>
@@ -31,7 +31,7 @@ require_once 'components/navbar.php';
                         </span>
                     </div>
                     <div>
-                        <small>Added 2h ago · Casablanca</small>
+                        <small><?= __('home.added2h') ?> · Casablanca</small>
                         <h3>The Alchemist</h3>
                         <p>Paulo Coelho</p>
                         <strong>95 MAD</strong>
@@ -40,10 +40,10 @@ require_once 'components/navbar.php';
                 <article>
                     <div class="mini-cover pattern-b"><span>1984</span></div>
                     <div>
-                        <small>Added 5h ago · Rabat</small>
+                        <small><?= __('home.added5h') ?> · Rabat</small>
                         <h3>Nineteen Eighty-Four</h3>
                         <p>George Orwell</p>
-                        <strong>Exchange</strong>
+                        <strong><?= __('home.exchange') ?></strong>
                     </div>
                 </article>
                 <article>
@@ -57,7 +57,7 @@ require_once 'components/navbar.php';
                         </span>
                     </div>
                     <div>
-                        <small>Added yesterday · Agadir</small>
+                        <small><?= __('home.addedYesterday') ?> · Agadir</small>
                         <h3>Le Petit Prince</h3>
                         <p>Antoine de Saint-Exupéry</p>
                         <strong>70 MAD</strong>
@@ -66,7 +66,7 @@ require_once 'components/navbar.php';
                 <article>
                     <div class="mini-cover pattern-d"><span>IKIGAI</span></div>
                     <div>
-                        <small>Added yesterday · Marrakech</small>
+                        <small><?= __('home.addedYesterday') ?> · Marrakech</small>
                         <h3>Ikigai</h3>
                         <p>García & Miralles</p>
                         <strong>120 MAD</strong>
@@ -83,33 +83,30 @@ require_once 'components/navbar.php';
                     loading="lazy"
                     width="1200"
                     height="800"
-                    alt="A reader browsing shelves in a vintage bookshop"
+                    alt="<?= htmlspecialchars(__('home.editorialImageAlt')) ?>"
                 />
                 <span>
-                    SECOND-HAND
+                    <?= __('home.secondHand') ?>
                     <br />
-                    FIRST-CHOICE
+                    <?= __('home.firstChoice') ?>
                 </span>
             </div>
             <div>
-                <span class="eyebrow">READ MORE. WASTE LESS.</span>
-                <h2>Every pre-loved book begins another chapter.</h2>
-                <p>
-                    Marketplace Library brings readers together to make good stories travel further—at better
-                    prices, close to home.
-                </p>
+                <span class="eyebrow"><?= __('home.editorialEyebrow') ?></span>
+                <h2><?= __('home.editorialTitle') ?></h2>
+                <p><?= __('home.editorialDescription') ?></p>
                 <div class="editorial-stats">
                     <span>
                         <strong>68%</strong>
-                        less waste
+                        <?= __('home.lessWaste') ?>
                     </span>
                     <span>
-                        <strong>12 cities</strong>
-                        connected
+                        <strong><?= __('home.twelveCities') ?></strong>
+                        <?= __('home.connected') ?>
                     </span>
                 </div>
                 <a class="btn btn-primary" href="pages/about.php">
-                    Discover our story
+                    <?= __('home.discoverStory') ?>
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
@@ -118,27 +115,27 @@ require_once 'components/navbar.php';
     <section class="marketplace-steps">
         <div class="container">
             <div class="section-header">
-                <span class="eyebrow">HOW IT WORKS</span>
-                <h2>Pass on the stories you love.</h2>
+                <span class="eyebrow"><?= __('home.stepsEyebrow') ?></span>
+                <h2><?= __('home.stepsTitle') ?></h2>
             </div>
             <div class="steps-grid">
                 <article>
                     <b>01</b>
                     <i class="fa-solid fa-bag-shopping"></i>
-                    <h3>Buy</h3>
-                    <p>Find affordable books from readers near you.</p>
+                    <h3><?= __('home.buy') ?></h3>
+                    <p><?= __('home.buyDescription') ?></p>
                 </article>
                 <article>
                     <b>02</b>
                     <i class="fa-solid fa-arrow-up-from-bracket"></i>
-                    <h3>Sell</h3>
-                    <p>Give the books you no longer need a new home.</p>
+                    <h3><?= __('home.sell') ?></h3>
+                    <p><?= __('home.sellDescription') ?></p>
                 </article>
                 <article>
                     <b>03</b>
                     <i class="fa-solid fa-arrows-rotate"></i>
-                    <h3>Exchange</h3>
-                    <p>Trade your next read with the community.</p>
+                    <h3><?= __('home.exchange') ?></h3>
+                    <p><?= __('home.exchangeDescription') ?></p>
                 </article>
             </div>
         </div>
@@ -147,19 +144,19 @@ require_once 'components/navbar.php';
         <div class="container">
             <span>
                 <i class="fa-solid fa-leaf"></i>
-                Sustainable reading
+                <?= __('home.sustainableReading') ?>
             </span>
             <span>
                 <i class="fa-solid fa-location-dot"></i>
-                Local community
+                <?= __('home.localCommunity') ?>
             </span>
             <span>
                 <i class="fa-solid fa-shield-heart"></i>
-                Secure accounts
+                <?= __('home.secureAccounts') ?>
             </span>
             <span>
                 <i class="fa-solid fa-tags"></i>
-                Better prices
+                <?= __('home.betterPrices') ?>
             </span>
         </div>
     </section>

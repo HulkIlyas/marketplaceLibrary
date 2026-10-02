@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         translations = {};
     }
 
-    function translate(key, fallback, replacements = []) {
-        let message = translations[key] || fallback;
+    function translate(key, replacements = []) {
+        let message = translations[key] || key;
         replacements.forEach((replacement) => {
             message = message.replace('%s', replacement);
         });
@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!ALLOWED_TYPES.includes(file.type)) {
                 errors.push(translate(
                     'invalidFileType',
-                    '%s: use a JPG, PNG, or WebP image.',
                     [file.name]
                 ));
                 return;
@@ -96,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (file.size > MAX_FILE_SIZE) {
                 errors.push(translate(
                     'fileTooLarge',
-                    '%s: the file is larger than 5 MB.',
                     [file.name]
                 ));
                 return;
@@ -112,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const availableSlots = MAX_PHOTOS - selectedPhotos.length;
         if (validFiles.length > availableSlots) {
-            errors.push(translate('tooManyPhotos', `You can add up to ${MAX_PHOTOS} photos.`));
+            errors.push(translate('tooManyPhotos'));
         }
 
         validFiles.slice(0, availableSlots).forEach((file) => {
@@ -139,24 +137,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const image = document.createElement('img');
             image.src = photo.url;
             image.alt = index === 0
-                ? translate('selectedCoverPhoto', 'Selected cover photo')
-                : translate('selectedBookPhoto', 'Selected book photo %s', [String(index + 1)]);
+                ? translate('selectedCoverPhoto')
+                : translate('selectedBookPhoto', [String(index + 1)]);
 
             const removeButton = document.createElement('button');
             removeButton.className = 'remove-photo';
             removeButton.type = 'button';
             removeButton.dataset.photoIndex = String(index);
-            removeButton.textContent = translate('remove', 'Remove');
+            removeButton.textContent = translate('remove');
             removeButton.setAttribute(
                 'aria-label',
-                translate('removePhoto', 'Remove photo %s', [String(index + 1)])
+                translate('removePhoto', [String(index + 1)])
             );
 
             item.append(image);
             if (index === 0) {
                 const coverLabel = document.createElement('span');
                 coverLabel.className = 'cover-label';
-                coverLabel.textContent = translate('cover', 'Cover');
+                coverLabel.textContent = translate('cover');
                 item.append(coverLabel);
             }
             item.append(removeButton);
@@ -200,34 +198,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const price = priceInput.value;
         const descriptionValue = description.value.trim();
 
-        preview.title.textContent = title || translate('previewTitle', 'Your book title');
-        preview.author.textContent = author || translate('previewAuthor', 'Author name');
+        preview.title.textContent = title || translate('previewTitle');
+        preview.author.textContent = author || translate('previewAuthor');
         preview.condition.textContent = condition
             ? form.elements.condition.selectedOptions[0].textContent
-            : translate('previewCondition', 'Condition');
+            : translate('previewCondition');
         preview.description.textContent = descriptionValue ||
-            translate(
-                'previewDescription',
-                'Your description will appear here so readers can learn more about the book.'
-            );
+            translate('previewDescription');
         const listingTypeLabels = {
-            Sell: translate('sell', 'Sell'),
-            Exchange: translate('exchange', 'Exchange'),
-            'Sell or Exchange': translate('sellOrExchange', 'Sell or Exchange')
+            Sell: translate('sell'),
+            Exchange: translate('exchange'),
+            'Sell or Exchange': translate('sellOrExchange')
         };
         preview.type.textContent = listingTypeLabels[listingType] || '';
         preview.type.hidden = !listingType;
 
         if (listingType === 'Exchange') {
-            preview.price.textContent = translate('availableForExchange', 'Available for exchange');
+            preview.price.textContent = translate('availableForExchange');
         } else if (listingType && price !== '') {
             preview.price.textContent = `${Number(price).toLocaleString(document.documentElement.lang, {
                 maximumFractionDigits: 2
-            })} ${translate('currency', 'MAD')}`;
+            })} ${translate('currency')}`;
         } else if (listingType) {
-            preview.price.textContent = translate('priceInMad', 'Price in MAD');
+            preview.price.textContent = translate('priceInMad');
         } else {
-            preview.price.textContent = translate('chooseListingType', 'Choose a listing type');
+            preview.price.textContent = translate('chooseListingType');
         }
 
         if (selectedPhotos.length) {
@@ -269,15 +264,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function validateForm() {
         let isValid = true;
         const requiredFields = [
-            ['title', translate('titleRequired', 'Enter the book title.')],
-            ['author', translate('authorRequired', 'Enter the author name.')],
-            ['category', translate('categoryRequired', 'Choose a category.')],
-            ['condition', translate('conditionRequired', 'Choose the book condition.')],
-            ['description', translate('descriptionRequired', 'Add a description of the book.')]
+            ['title', translate('titleRequired')],
+            ['author', translate('authorRequired')],
+            ['category', translate('categoryRequired')],
+            ['condition', translate('conditionRequired')],
+            ['description', translate('descriptionRequired')]
         ];
 
         const hasPhoto = selectedPhotos.length > 0;
-        setPhotoError(hasPhoto ? '' : translate('photoRequired', 'Add at least one photo of your book.'));
+        setPhotoError(hasPhoto ? '' : translate('photoRequired'));
         if (!hasPhoto) {
             isValid = false;
         }
@@ -293,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const listingType = getListingType();
         setFieldError(
             'listing_type',
-            listingType ? '' : translate('listingTypeRequired', 'Choose a listing type.')
+            listingType ? '' : translate('listingTypeRequired')
         );
         if (!listingType) {
             isValid = false;
@@ -303,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const validPrice = !needsPrice || (priceInput.value !== '' && Number(priceInput.value) > 0);
         setFieldError(
             'price',
-            validPrice ? '' : translate('priceRequired', 'Enter a price greater than 0 MAD.')
+            validPrice ? '' : translate('priceRequired')
         );
         if (!validPrice) {
             isValid = false;
@@ -329,12 +324,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function saveDraft() {
         try {
             localStorage.setItem(DRAFT_KEY, JSON.stringify(draftData()));
-            showStatus(translate(
-                'draftSaved',
-                'Draft saved on this device. Photos are not stored and will need to be selected again.'
-            ), 'success');
+            showStatus(translate('draftSaved'), 'success');
         } catch (error) {
-            showStatus(translate('draftFailed', 'The draft could not be saved in this browser.'), 'error');
+            showStatus(translate('draftFailed'), 'error');
         }
     }
 
@@ -367,10 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updatePriceVisibility();
         updatePreview();
-        showStatus(translate(
-            'draftRestored',
-            'Your saved draft was restored. Photos are not included in saved drafts.'
-        ), 'info');
+        showStatus(translate('draftRestored'), 'info');
     }
 
     dropzone.addEventListener('click', () => photoInput.click());
@@ -424,10 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePreview();
         previewPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
         window.setTimeout(() => previewPanel.focus({ preventScroll: true }), 400);
-        showStatus(translate(
-            'previewReady',
-            'The live preview is ready. This is a local preview and has not been published.'
-        ), 'info');
+        showStatus(translate('previewReady'), 'info');
     });
 
     form.addEventListener('submit', async (event) => {
@@ -436,10 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearStatus();
 
         if (!validateForm()) {
-            showStatus(translate(
-                'correctFields',
-                'Please correct the highlighted fields before publishing.'
-            ), 'error');
+            showStatus(translate('correctFields'), 'error');
             if (selectedPhotos.length === 0) {
                 dropzone.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 dropzone.focus({ preventScroll: true });
@@ -451,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         isPublishing = true;
         publishButton.disabled = true;
-        publishButton.textContent = translate('publishing', 'Publishing...');
+        publishButton.textContent = translate('publishing');
         form.setAttribute('aria-busy', 'true');
 
         try {
@@ -470,8 +453,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const createdId = result.data?.data?.id;
             if (!result.ok || result.status !== 201 || !Number.isSafeInteger(Number(createdId)) || Number(createdId) <= 0) {
                 const fallback = result.status
-                    ? translate('publishFailed', 'Unable to publish listing.')
-                    : translate('publishNetworkError', 'Unable to connect to the API. Please try again.');
+                    ? translate('publishFailed')
+                    : translate('publishNetworkError');
                 throw new Error(result.status ? (result.data?.error || fallback) : fallback);
             }
 
@@ -481,13 +464,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.warn('Unable to clear the saved listing draft.', error);
             }
-            showStatus(translate('publishSuccess', 'Listing published successfully.'), 'success');
+            showStatus(translate('publishSuccess'), 'success');
             status.scrollIntoView({ behavior: 'smooth', block: 'center' });
             window.setTimeout(() => {
                 window.location.assign(`book-details.php?id=${encodeURIComponent(createdId)}`);
             }, 800);
         } catch (error) {
-            showStatus(error.message || translate('publishFailed', 'Unable to publish listing.'), 'error');
+            showStatus(error.message || translate('publishFailed'), 'error');
             status.scrollIntoView({ behavior: 'smooth', block: 'center' });
             isPublishing = false;
             publishButton.disabled = false;

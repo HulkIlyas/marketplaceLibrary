@@ -19,8 +19,8 @@ require_once __DIR__ . '/../includes/translator.php';
             <input
                 type="search"
                 name="q"
-                placeholder="Search by title, author or ISBN..."
-                aria-label="Search books"
+                placeholder="<?= htmlspecialchars(__('header.searchPlaceholder')) ?>"
+                aria-label="<?= htmlspecialchars(__('header.searchLabel')) ?>"
             />
             <button>
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -29,16 +29,16 @@ require_once __DIR__ . '/../includes/translator.php';
 
         <!-- Right Side -->
         <div class="header-actions">
-            <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+            <button class="menu-toggle" type="button" aria-label="<?= htmlspecialchars(__('header.openNavigation')) ?>" aria-expanded="false">
                 <i class="fa-solid fa-bars"></i>
             </button>
             <a href="<?= htmlspecialchars($basePath) ?>pages/create-listing.php" class="sell-book-cta">
                 <i class="fa-solid fa-plus"></i>
-                Sell a Book
+                <?= __('header.sellBook') ?>
             </a>
             <a href="<?= htmlspecialchars($basePath) ?>pages/wishlist.php" class="action-item">
                 <i class="fa-regular fa-heart"></i>
-                <span>Wishlist</span>
+                <span><?= __('header.wishlist') ?></span>
             </a>
 
             <a
@@ -46,6 +46,7 @@ require_once __DIR__ . '/../includes/translator.php';
                 class="action-item"
                 data-account-link
                 data-profile-href="<?= htmlspecialchars($basePath) ?>profile.php"
+                data-account-label="<?= htmlspecialchars(__('footer.myAccount')) ?>"
             >
                 <i class="fa-regular fa-user"></i>
                 <span><?= __('header.login') ?></span>
@@ -54,7 +55,7 @@ require_once __DIR__ . '/../includes/translator.php';
             <?php $registerHref = ($basePath ?? '') === '../' ? 'register.php' : 'pages/register.php'; ?>
             <a href="<?= htmlspecialchars($registerHref) ?>" class="action-item" data-auth-register>
                 <i class="fa-solid fa-user-plus"></i>
-                <span><?= __('header.register') ?? 'Register' ?></span>
+                <span><?= __('header.register') ?></span>
             </a>
 
             <button
@@ -65,7 +66,7 @@ require_once __DIR__ . '/../includes/translator.php';
                 hidden
             >
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <span>Logout</span>
+                <span><?= __('header.logout') ?></span>
             </button>
 
             <a href="<?= htmlspecialchars($basePath) ?>pages/cart.php" class="action-item cart-item">

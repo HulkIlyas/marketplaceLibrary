@@ -38,7 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const input = button.parentElement.querySelector('input');
             const showing = input.type === 'text';
             input.type = showing ? 'password' : 'text';
-            button.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+            button.setAttribute(
+                'aria-label',
+                showing ? (button.dataset.showLabel || 'Show password') : (button.dataset.hideLabel || 'Hide password')
+            );
             button.querySelector('i').className = showing ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash';
         });
     });

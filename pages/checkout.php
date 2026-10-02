@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/../includes/config.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_set_cookie_params([
@@ -12,7 +11,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once __DIR__ . '/../includes/translator.php';
-
 $basePath = '../';
 $pageTitle = 'Checkout | Marketplace Library';
 

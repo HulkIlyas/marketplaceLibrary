@@ -33,7 +33,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const pagination = res.data.pagination;
 
                 if (booksCount) {
-                    booksCount.innerText = `${pagination.total_items} books available`;
+                    const count = Number(pagination.total_items) || 0;
+                    const label = count === 1
+                        ? booksCount.dataset.listingSingular
+                        : booksCount.dataset.listingPlural;
+                    booksCount.textContent = `${count} ${label}`;
                 }
 
                 booksGrid.innerHTML = '';

@@ -62,6 +62,8 @@ require_once __DIR__ . '/../components/navbar.php';
                             type="button"
                             class="password-toggle"
                             aria-label="<?= __('auth.showPassword') ?>"
+                            data-show-label="<?= htmlspecialchars(__('auth.showPassword')) ?>"
+                            data-hide-label="<?= htmlspecialchars(__('auth.hidePassword')) ?>"
                         >
                             <i class="fa-regular fa-eye"></i>
                         </button>
@@ -83,6 +85,5 @@ require_once __DIR__ . '/../components/navbar.php';
         </section>
     </div>
 </main>
-<script src="../assets/js/api.js"></script>
 <script src="../js/login.js"></script>
 <?php require_once __DIR__ . '/../components/footer.php'; ?>

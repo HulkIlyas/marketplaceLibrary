@@ -53,7 +53,12 @@ require_once __DIR__ . '/../components/navbar.php';
                         <i class="fa-solid fa-sliders"></i>
                         Filters
                     </button>
-                    <span>24 books available</span>
+                    <span
+                        id="booksCount"
+                        data-listing-singular="<?= htmlspecialchars(__('categories.listing')) ?>"
+                        data-listing-plural="<?= htmlspecialchars(__('categories.listings')) ?>"
+                        aria-live="polite"
+                    ></span>
                     <select>
                         <option>Most relevant</option>
                         <option>Newest</option>

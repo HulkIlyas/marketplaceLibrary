@@ -100,14 +100,21 @@ require_once __DIR__ . '/components/navbar.php';
                     data-tab="orders"
                 >
                     <i class="fa-solid fa-bag-shopping"></i>
-                    <span>Orders</span>
+                    <span><?= __('commerce.myOrders') ?></span>
                 </button>
                 <button
                     class="account-tab"
                     type="button"
                     role="tab"
                     aria-selected="false"
-                    aria-controls="panel-settings"
+                    aria-controls="panel-sales"
+                    data-tab="sales"
+                    aria-label="<?= __('commerce.sales') ?>"
+                >
+                    <i class="fa-solid fa-store"></i>
+                    <span><?= __('commerce.sales') ?></span>
+                </button>
+                <button class="account-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-settings"
                     data-tab="settings"
                 >
                     <i class="fa-solid fa-gear"></i>
@@ -147,8 +154,8 @@ require_once __DIR__ . '/components/navbar.php';
                     <article>
                         <span class="stat-icon soft"><i class="fa-solid fa-bag-shopping"></i></span>
                         <div>
-                            <strong>0</strong>
-                            <span>Orders</span>
+                            <strong id="buyer-order-count">—</strong>
+                            <span><?= __('commerce.myOrders') ?></span>
                         </div>
                     </article>
                 </div>
@@ -199,19 +206,16 @@ require_once __DIR__ . '/components/navbar.php';
             </section>
 
             <section class="account-panel" id="panel-orders" role="tabpanel" data-panel="orders" hidden>
-                <div class="panel-heading">
-                    <div>
-                        <span class="eyebrow">PURCHASE HISTORY</span>
-                        <h2>Orders</h2>
-                    </div>
-                    <p>Your marketplace orders will be organized here.</p>
-                </div>
-                <div class="account-empty">
-                    <span><i class="fa-solid fa-bag-shopping"></i></span>
-                    <h3>No orders yet</h3>
-                    <p>Completed and current orders will appear here when ordering is connected.</p>
-                    <a class="btn btn-primary" href="pages/books.php">Browse Books</a>
-                </div>
+                <h2><?= __('commerce.myOrders') ?></h2>
+                <p id="orders-status" class="commerce-status" role="status" aria-live="polite"></p>
+                <button type="button" class="btn btn-secondary" id="orders-retry"><?= __('commerce.retry') ?></button>
+                <div id="buyer-orders" class="commerce-items"></div>
+            </section>
+            <section class="account-panel" id="panel-sales" role="tabpanel" data-panel="sales" hidden>
+                <h2><?= __('commerce.sales') ?></h2>
+                <p id="sales-status" class="commerce-status" role="status" aria-live="polite"></p>
+                <button type="button" class="btn btn-secondary" id="sales-retry"><?= __('commerce.retry') ?></button>
+                <div id="seller-orders" class="commerce-items"></div>
             </section>
 
             <section class="account-panel" id="panel-settings" role="tabpanel" data-panel="settings" hidden>
@@ -258,4 +262,5 @@ require_once __DIR__ . '/components/navbar.php';
 </dialog>
 
 <script src="assets/js/account.js"></script>
+<script src="assets/js/orders.js"></script>
 <?php require_once __DIR__ . '/components/footer.php'; ?>

@@ -117,6 +117,40 @@ document.addEventListener('DOMContentLoaded', async () => {
         element('book-exchange').hidden = !exchange;
         element('exchange-unavailable').hidden = !exchange;
         element('book-exchange-note').hidden = type !== 'SELL_OR_EXCHANGE';
+        const cartBtn = element('book-cart');
+        if (cartBtn) {
+            cartBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+
+                // Send POST request to backend PHP script
+                try {
+                    const formData = new FormData();
+                    formData.append('book_id', book.id);
+                    formData.append('title', book.title);
+                    formData.append('author', book.author);
+                    formData.append('condition', book.book_condition || 'Good');
+                    formData.append('seller_name', book.owner_name || 'Seller');
+                    formData.append('seller_city', book.city || '');
+                    formData.append('price', book.price);
+                    formData.append('pattern_class', 'pattern-a');
+                    formData.append('cover_text', book.title);
+
+                    const response = await fetch('actions/add-to-cart.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (response.ok) {
+                        // Redirect to cart or show success notice
+                        window.location.href = 'cart.php';
+                    } else {
+                        alert('Failed to add item to cart.');
+                    }
+                } catch (err) {
+                    console.error('Cart error:', err);
+                }
+            });
+        }
         const price = element('book-price');
         if (type === 'EXCHANGE') {
             price.textContent = text('availableForExchange');
